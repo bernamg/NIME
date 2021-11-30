@@ -17,6 +17,6 @@ var play = function(p){
     }
 
     p.draw = function(){
-
+            
     }
 }
