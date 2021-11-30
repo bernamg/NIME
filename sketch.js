@@ -12,13 +12,14 @@ function setup() {
 
   let title = createElement('h', 'NIME');
   title.addClass('title');
-  title.position(windowWidth-170,windowHeight/6);
+  title.position(windowWidth * 0.50 - title.width/2 ,windowHeight* 0.15);
   title.center('horizontal');
 
   note = new Note();
   fullscreenButton = createButton('FullScreen');
-  fullscreenButton.position(windowWidth*0.9-(fullscreenButton.width/2),20);
-  fullscreenButton.addClass('botton');
+
+  fullscreenButton.position(windowWidth * 0.85 - fullscreenButton.width/2 ,windowHeight * 0.05);
+  fullscreenButton.addClass('full');
   fullscreenButton.style('border', '1px solid #ec1840');
   fullscreenButton.touchStarted(goFullScreen);
   //rato
@@ -28,11 +29,35 @@ function setup() {
   playButton = createButton('Play Music');
   playButton.addClass('botton');
   playButton.style('border', '1px solid #23f702');
-  playButton.position(windowWidth-170,windowHeight/3);
+  playButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.35);
   playButton.center('horizontal');
   playButton.touchStarted(goFullScreen);
   //rato
-  playButton.mousePressed(play);
+  playButton.mousePressed();
+
+
+  //BOTAO AJUDA
+
+  helpButton = createButton('Ajuda')
+  helpButton.addClass('full');
+  helpButton.style('border', '1px solid #23f702');
+  helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.45);
+  helpButton.center('horizontal');
+  //playButton.touchStarted();
+  //rato
+  helpButton.mousePressed();
+
+  //BOTAO SAIR DO JOGO~
+
+  exitButton = createButton('Sair do jogo')
+  exitButton.addClass('full');
+  exitButton.style('border', '1px solid #23f702');
+  exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.55);
+  exitButton.center('horizontal');
+  //playButton.touchStarted();
+  //rato
+  exitButton.mousePressed();
+
 }
 
 
