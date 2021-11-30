@@ -12,7 +12,7 @@ canvas {
   display: block;
 }
 
-.full{
+.botton{
   position: relative;
   width: 180px;
   height: 60px;
@@ -26,7 +26,7 @@ canvas {
   background-color: black;
 }
 
-.full:active {
+.botton:active {
   background-color: #fff;
 }
 
