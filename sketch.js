@@ -11,7 +11,7 @@ function setup() {
   //Titulo
   let title = createElement('h', 'NIME');
   title.addClass('title');
-  title.position(windowWidth * 0.50 - title.width/2 ,windowHeight* 0.15);
+  title.position(windowWidth * 0.50 - title.width ,windowHeight* 0.15);
   title.center('horizontal');
 
   note = new Note();
@@ -66,6 +66,7 @@ function windowResized() {
 function goFullScreen() {
   let fs = fullscreen();
   fullscreen(!fs);
+  windowResized();
 }
 
 function draw() {
