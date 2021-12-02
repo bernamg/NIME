@@ -1,6 +1,6 @@
 @font-face {
   font-family: title;
-  src: url('/font/titlespace.otf');
+  src: url("font/titlespace.otf");
 }
 
 html, body {
