@@ -39,7 +39,7 @@ function setup() {
 
   helpButton = createButton('Help')
   helpButton.addClass('botton');
-  helpButton.style('border', '1px solid #23f702');
+  helpButton.style('border', '1px solid #0c3475');
   helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.55);
   helpButton.center('horizontal');
   //playButton.touchStarted();
