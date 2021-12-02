@@ -28,7 +28,7 @@ function setup() {
   playButton = createButton('Play Music');
   playButton.addClass('botton');
   playButton.style('border', '1px solid #23f702');
-  playButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.35);
+  playButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.40);
   playButton.center('horizontal');
   playButton.touchStarted(goFullScreen);
   //rato
@@ -40,7 +40,7 @@ function setup() {
   helpButton = createButton('Help')
   helpButton.addClass('botton');
   helpButton.style('border', '1px solid #23f702');
-  helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.50);
+  helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.55);
   helpButton.center('horizontal');
   //playButton.touchStarted();
   //rato
@@ -51,7 +51,7 @@ function setup() {
   exitButton = createButton('Sair do jogo')
   exitButton.addClass('botton');
   exitButton.style('border', '1px solid #23f702');
-  exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.65);
+  exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.70);
   exitButton.center('horizontal');
   //playButton.touchStarted();
   //rato
