@@ -7,6 +7,8 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  
+  //Titulo
   let title = createElement('h', 'NIME');
   title.addClass('title');
   title.position(windowWidth * 0.50 - title.width/2 ,windowHeight* 0.15);
@@ -15,7 +17,7 @@ function setup() {
   note = new Note();
   fullscreenButton = createButton('FullScreen');
 
-  fullscreenButton.position(windowWidth * 0.85 - fullscreenButton.width/2 ,windowHeight * 0.05);
+  fullscreenButton.position(windowWidth * 0.75 - fullscreenButton.width/2 ,windowHeight * 0.05);
   fullscreenButton.addClass('botton');
   fullscreenButton.style('border', '1px solid #ec1840');
   fullscreenButton.touchStarted(goFullScreen);
@@ -38,7 +40,7 @@ function setup() {
   helpButton = createButton('Help')
   helpButton.addClass('botton');
   helpButton.style('border', '1px solid #23f702');
-  helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.45);
+  helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.50);
   helpButton.center('horizontal');
   //playButton.touchStarted();
   //rato
@@ -49,7 +51,7 @@ function setup() {
   exitButton = createButton('Sair do jogo')
   exitButton.addClass('botton');
   exitButton.style('border', '1px solid #23f702');
-  exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.55);
+  exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.65);
   exitButton.center('horizontal');
   //playButton.touchStarted();
   //rato

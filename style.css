@@ -14,8 +14,8 @@ canvas {
 
 .botton{
   position: relative;
-  width: 180px;
-  height: 60px;
+  width: 20%;
+  height: 10%;
   margin: 20px;
   line-height: 60px;
   letter-spacing: 2px;
@@ -32,13 +32,14 @@ canvas {
 
 .title{
   position: relative;
+  width: 25%;
+  height: 10%;
   margin: 20px;
   line-height: 60px;
   letter-spacing: 2px;
-  font-size:150px;
+  font-size:190px;
   text-decoration: none;
   text-transform: uppercase;
-  text-align: center;
   color: #FFFFFF;
   background-color: black;
   font-family: title;
