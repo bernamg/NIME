@@ -78,5 +78,5 @@ function draw() {
 
 
 function teste(){
-  window.location.href="teste.html";
+  window.location.href="play.html";
 }
