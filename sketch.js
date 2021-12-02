@@ -19,7 +19,7 @@ function setup() {
   fullscreenButton = createButton('FullScreen');
 
   fullscreenButton.position(windowWidth * 0.85 - fullscreenButton.width/2 ,windowHeight * 0.05);
-  fullscreenButton.addClass('full');
+  fullscreenButton.addClass('botton');
   fullscreenButton.style('border', '1px solid #ec1840');
   fullscreenButton.touchStarted(goFullScreen);
   //rato
@@ -38,8 +38,8 @@ function setup() {
 
   //BOTAO AJUDA
 
-  helpButton = createButton('Ajuda')
-  helpButton.addClass('full');
+  helpButton = createButton('Help')
+  helpButton.addClass('botton');
   helpButton.style('border', '1px solid #23f702');
   helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.45);
   helpButton.center('horizontal');
@@ -50,7 +50,7 @@ function setup() {
   //BOTAO SAIR DO JOGO~
 
   exitButton = createButton('Sair do jogo')
-  exitButton.addClass('full');
+  exitButton.addClass('botton');
   exitButton.style('border', '1px solid #23f702');
   exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.55);
   exitButton.center('horizontal');
