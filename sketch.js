@@ -44,7 +44,7 @@ function setup() {
   helpButton.center('horizontal');
   //playButton.touchStarted();
   //rato
-  helpButton.mousePressed();
+  helpButton.mousePressed(ajuda);
 
   //BOTAO SAIR DO JOGO~
 
@@ -79,4 +79,8 @@ function draw() {
 
 function teste(){
   window.location.href="play.html";
+}
+
+function ajuda(){
+  window.location.href="ajuda.html";
 }
