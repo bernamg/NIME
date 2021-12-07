@@ -16,13 +16,14 @@ canvas {
   position: relative;
   width: 20%;
   height: 10%;
-  margin: 20px;
   line-height: 60px;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
   color: #FFFFFF;
+  font-size: 20px;
+  border-radius: 20px;
   background-color: black;
 }
 
@@ -32,9 +33,9 @@ canvas {
 
 .title{
   position: relative;
-  width: 25%;
+  text-shadow: 10px 10px black;
+  width: 0%;
   height: 10%;
-  margin: 10px;
   line-height: 60px;
   letter-spacing: 10px;
   font-size:190px;

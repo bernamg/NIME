@@ -8,26 +8,34 @@ function preload(){
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
+  bg = loadImage('img.jpg');
+
   //Titulo
   let title = createElement('h', 'NIME');
   title.addClass('title');
-  title.position(windowWidth * 0.50 - title.width ,windowHeight* 0.15);
-  title.center('horizontal');
-
+  title.position(windowWidth * 0.355 ,windowHeight* 0.15);
+  
   note = new Note();
-  fullscreenButton = createButton('FullScreen');
 
+
+  //BOTAO FULLSCREEN
+  /*
+  fullscreenButton = createButton('FullScreen');
   fullscreenButton.position(windowWidth * 0.75 - fullscreenButton.width/2 ,windowHeight * 0.05);
   fullscreenButton.addClass('botton');
   fullscreenButton.style('border', '1px solid #ec1840');
   fullscreenButton.touchStarted(goFullScreen);
   //rato
   fullscreenButton.mousePressed(goFullScreen);
-
+  */
+  
+  //BOTAO PLAY MUSIC
 
   playButton = createButton('Play Music');
   playButton.addClass('botton');
-  playButton.style('border', '1px solid #23f702');
+  playButton.style('border', '1px solid #CF1D41');
+  let col1 = color(207, 29, 65, 100);
+  playButton.style('background-color', col1);
   playButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.40);
   playButton.center('horizontal');
   playButton.touchStarted(goFullScreen);
@@ -39,18 +47,22 @@ function setup() {
 
   helpButton = createButton('Help')
   helpButton.addClass('botton');
-  helpButton.style('border', '1px solid #0c3475');
+  helpButton.style('border', '1px solid #243F8D');
+  let col2 = color(36, 63, 141, 100);
+  helpButton.style('background-color', col2);
   helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.55);
   helpButton.center('horizontal');
   //playButton.touchStarted();
   //rato
   helpButton.mousePressed(ajuda);
 
-  //BOTAO SAIR DO JOGO~
+  //BOTAO SAIR DO JOGO
 
   exitButton = createButton('Sair do jogo')
   exitButton.addClass('botton');
-  exitButton.style('border', '1px solid #23f702');
+  exitButton.style('border', '1px solid #F6BE2E');
+  let col3 = color(246, 190, 46, 100);
+  exitButton.style('background-color', col3);
   exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.70);
   exitButton.center('horizontal');
   //playButton.touchStarted();
@@ -70,9 +82,9 @@ function goFullScreen() {
 }
 
 function draw() {
-  background(0);
-    note.move();
-    note.show();
+  background(bg);
+  note.move();
+  note.show();
 
 }
 
