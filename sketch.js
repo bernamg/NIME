@@ -1,4 +1,8 @@
-let note;
+let note1;
+let note2;
+let note3;
+let note2_check = 0;
+let note3_check = 0;
 let count = 0;
 let play_sound;
 let angle = 0;
@@ -10,18 +14,26 @@ function preload(){
   bg = loadImage('images/background.jpg');
 
   noteIMG = loadImage("images/nota1.png");
+  note2IMG = loadImage("images/nota2.png");
+  note3IMG = loadImage("images/nota3.png");
+
+
   guitarraIMG = loadImage("guitarra.png");
   saxofoneIMG = loadImage("saxofone.png");
   tamborIMG = loadImage("tambor.png");
 
-  song = loadSound('sounds/musica_menu.mp3');
+  song1 = loadSound('sounds/musica_menu.mp3');
+  song2 = loadSound('sounds/musica_menu2.mp3');
+  song3 = loadSound('sounds/musica_menu3.mp3');
+
+
 }
 
 function setup() {
   
   canvas = createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
-    soundFormats('mp3', 'ogg');
+  soundFormats('mp3', 'ogg');
   play_sound = loadSound('sounds/guitar');
 
   //Titulo
@@ -29,7 +41,9 @@ function setup() {
   title.addClass('title');
   title.position(windowWidth * 0.355 ,windowHeight* 0.20);
   
-  note = new Note();
+  note1 = new Note();
+  note2 = new Note();
+  note3 = new Note();
 
 
   //BOTAO FULLSCREEN
@@ -55,9 +69,9 @@ function setup() {
   playButton.style('background-color', col1);
   playButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.45);
   playButton.center('horizontal');
-  playButton.touchStarted(goFullScreen);
+  playButton.touchStarted(playMenu);
   //rato
-  playButton.mousePressed(playPressed);
+  playButton.mousePressed(playMenu);
 
 
   //BOTAO AJUDA
@@ -101,11 +115,18 @@ function draw() {
   imageMode(CORNER);
 
   background(bg);
-  note.move();
-  note.show();
+  note1.move();
+  note1.show();
+  if(note2_check == 1){
+    note2.move();
+    note2.show2();
+  }
+  if(note3_check == 1){
+    note3.move();
+    note3.show3();
+  }
   imageMode(CENTER);
   playAnimation()
-  //rodarTambor();
 }
 
 //===============DEFINIR DIRECÃO DA ANIMACÃO===============//
@@ -216,23 +237,53 @@ function playAnimation(){
   pop();
 }
 
-function playPressed(){
-  song.stop();
+function playMenu(){
+  song1.stop();
+  song2.stop();
   play_sound.play();
-}
-
-function teste(){
   window.location.href="play.html";
 }
 
 function checkNote(){
   let x=mouseX;
   let y=mouseY;
-  if(note.clicked(x,y)){
+  if(note1.clicked(x,y)){
     check = 1;
     playAnimation();
-    if(!song.isPlaying()){
-      song.loop();
+    if (song2.isPlaying()){
+      song2.stop();
+    }
+    else if(song3.isPlaying()){
+      song3.stop();
+    }
+    if(!song1.isPlaying()){
+      song1.loop();
+    }
+    note2_check = 1;
+  }
+  
+  else if(note2.clicked(x,y)){
+    if (song1.isPlaying()){
+      song1.stop();
+    }
+    if(song3.isPlaying()){
+      song3.stop();
+    }
+    if(!song2.isPlaying()){
+      song2.loop();
+    }
+    note3_check = 1;
+  }
+
+  else if(note3.clicked(x,y)){
+    if (song1.isPlaying()){
+      song1.stop();
+    }
+    if(song2.isPlaying()){
+      song2.stop();
+    }
+    if(!song3.isPlaying()){
+      song3.loop();
     }
   }
 }
