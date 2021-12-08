@@ -46,3 +46,8 @@ canvas {
   font-family: title;
 
 }
+
+.instrument{
+  width: 100px;
+  height: 100px;
+}

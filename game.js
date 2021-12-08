@@ -10,6 +10,12 @@ function setup() {
 
   note = new Note();
 
+  //guitarButton = createImg("images/guitar.jpg");
+  //guitarButton.position(0,0);
+  //guitarButton.addClass('instrument');
+  //guitarButton.touchStarted();
+
+
 }
 
 function windowResized() {
