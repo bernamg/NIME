@@ -173,9 +173,8 @@ function playAnimation(){
 
   //===============GUITARRA 3===============//
   push();
-  scale(0.6);
-  translate (width*1.55, height + (guitarraIMG.height/1.6));
-  rotate(70);
+  scale(-0.6,0.6);
+  translate (-width*1.55, height + (guitarraIMG.height/1.6));
   setDirection();
   image(guitarraIMG,0,0);
   pop();
