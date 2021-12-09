@@ -12,7 +12,7 @@ canvas {
   display: block;
 }
 
-.botton{
+.button{
   position: relative;
   width: 20%;
   height: 10%;
@@ -27,8 +27,23 @@ canvas {
   background-color: black;
 }
 
-.botton:active {
+.button:active {
   background-color: #fff;
+}
+
+.sair_button{
+  position: relative;
+  width: 10%;
+  height: 10%;
+  line-height: 60px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: black;
 }
 
 .title{
@@ -43,7 +58,20 @@ canvas {
   text-transform: uppercase;
   color: #FFFFFF;
   font-family: title;
+}
 
+.ajuda{
+  position: relative;
+  text-shadow: 10px 10px black;
+  width: 0%;
+  height: 10%;
+  line-height: 60px;
+  letter-spacing: 10px;
+  font-size:100px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-family: title;
 }
 
 .instrument{

@@ -1,8 +1,8 @@
 class Note{
   constructor(){
-    this.x=random(100,500);
-    this.y=random(100,500);
-    this.xspeed = 8;
+    this.x=random(100,windowWidth-100);
+    this.y=random(100,windowHeight-100);
+    this.xspeed = 6;
     this.yspeed = 2;
   }
 

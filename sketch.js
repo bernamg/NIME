@@ -50,7 +50,7 @@ function setup() {
   /*
   fullscreenButton = createButton('FullScreen');
   fullscreenButton.position(windowWidth * 0.75 - fullscreenButton.width/2 ,windowHeight * 0.05);
-  fullscreenButton.addClass('botton');
+  fullscreenButton.addClass('button');
   fullscreenButton.style('border', '1px solid #ec1840');
   fullscreenButton.touchStarted(goFullScreen);
   //rato
@@ -63,7 +63,7 @@ function setup() {
   canvas.touchStarted(checkNote);
 
   playButton = createButton('Tocar Música');
-  playButton.addClass('botton');
+  playButton.addClass('button');
   playButton.style('border', '1px solid #CF1D41');
   let col1 = color(207, 29, 65, 100);
   playButton.style('background-color', col1);
@@ -77,9 +77,9 @@ function setup() {
   //BOTAO AJUDA
 
   helpButton = createButton('Ajuda')
-  helpButton.addClass('botton');
-  helpButton.style('border', '1px solid #243F8D');
-  let col2 = color(36, 63, 141, 100);
+  helpButton.addClass('button');
+  helpButton.style('border', '1px solid #F6BE2E');
+  let col2 = color(246, 190, 46, 100);
   helpButton.style('background-color', col2);
   helpButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.60);
   helpButton.center('horizontal');
@@ -90,9 +90,9 @@ function setup() {
   //BOTAO SAIR DO JOGO
 
   exitButton = createButton('Sair do jogo')
-  exitButton.addClass('botton');
-  exitButton.style('border', '1px solid #F6BE2E');
-  let col3 = color(246, 190, 46, 100);
+  exitButton.addClass('button');
+  exitButton.style('border', '1px solid #243F8D');
+  let col3 = color(36, 63, 141, 100);  
   exitButton.style('background-color', col3);
   exitButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.75);
   exitButton.center('horizontal');
