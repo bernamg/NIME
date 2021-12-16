@@ -3,6 +3,8 @@ let count = 0;
 let i=98;
 let selecionado = null;
 var port;
+let col=0;
+let li=0;
 
 function preload(){
   bg = loadImage('images/background.jpg');
@@ -112,8 +114,8 @@ function setup() {
   saxofoneSop.position(windowWidth/2.33,windowHeight/4.9);
   saxofoneSop.size(60,120);
   saxofoneSop.addClass('instrument');
-  saxofoneSop.mousePressed(AltoSax);
-  saxofoneSop.touchStarted(AltoSax);
+  saxofoneSop.mousePressed(SopranoSax);
+  saxofoneSop.touchStarted(SopranoSax);
 
   saxofoneBar = createImg('images/saxofone-baritono.png');
   saxofoneBar.position(windowWidth/1.94,windowHeight/4.9);
@@ -150,7 +152,7 @@ function setup() {
   trombone.mousePressed(TromboneI);
   trombone.touchStarted(TromboneI);
 
-  tuba = createImg('/images/tuba.png');
+  tuba = createImg('images/tuba.png');
   tuba.position(windowWidth*0.62,windowHeight/2.47);
   tuba.size(90,120);
   tuba.addClass('instrument');
@@ -174,11 +176,24 @@ function draw() {
 			line((width/10)*3, y, width-(width/10)*3, y);
 		}
 	}
-
+  if(selecionado!=null){
+    highlightSelected(col, li);
+  }
 }
 
 
+function highlightSelected(col, li){
+  stroke(105,138,13);
+  strokeWeight(5);
+  line((width/10)*(3+col), (height/5)*(1+li), (width/10)*(4+col), (height/5)*(1+li));
+  line((width/10)*(3+col), (height/5)*(2+li),(width/10)*(4+col), (height/5)*(2+li));
 
+  line((width/10)*(3+col), (height/5)*(1+li), (width/10)*(3+col), (height/5)*(2+li));
+  line((width/10)*(4+col), (height/5)*(1+li), (width/10)*(4+col), (height/5)*(2+li));
+
+  
+  //rect((width/10)*(3+col), (height/5)*(1+li), width/10, height/5);
+}
 
 /*******************************
  * 
@@ -193,48 +208,64 @@ function guitarra(){
 }
 
 function AltoSax(instrumento){
+  col=0;
+  li=0;
   console.log("Alterado para saxofone");
   selecionado = 65;
   port.ch(0).program(selecionado);
 }
 
 function SopranoSax(instrumento){
+  col=1;
+  li=0;
   console.log("Alterado para saxofone-soprano");
   selecionado = 64;
   port.ch(0).program(selecionado);
 }
 
 function BaritonoSax(instrumento){
+  col=2;
+  li=0;
   console.log("Alterado para saxofone-baritono");
   selecionado = 67;
   port.ch(0).program(selecionado);
 }
 
 function OboeI(instrumento){
+  col=3;
+  li=0;
   console.log("Alterado para saxofone-baritono");
   selecionado = 69;
   port.ch(0).program(selecionado);
 }
 
 function FagoteI(instrumento){
+  col=0;
+  li=1;
   console.log("Alterado para fagote");
   selecionado = 70;
   port.ch(0).program(selecionado);
 }
 
 function TrompeteI(instrumento){
+  col=1;
+  li=1;
   console.log("Alterado para trompete");
   selecionado = 56;
   port.ch(0).program(selecionado);
 }
 
 function TromboneI(instrumento){
+  col=2;
+  li=1;
   console.log("Alterado para trombone");
   selecionado = 57;
   port.ch(0).program(selecionado);
 }
 
 function TubaI(instrumento){
+  col=3;
+  li=1;
   console.log("Alterado para tuba");
   selecionado = 58;
   port.ch(0).program(selecionado);
