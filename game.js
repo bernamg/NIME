@@ -271,6 +271,7 @@ function miNote(){
   if(selecionado != null){
     console.log("Playing note: mi on " + selecionado);
     port.noteOn(0, 64, 127)
+  }
 }
 
 function faNote(){
@@ -320,5 +321,4 @@ function do2Note(){
     port.noteOff(0, 72, 127)
     }, 500);
   }
-}
 }
