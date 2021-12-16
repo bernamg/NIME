@@ -46,17 +46,6 @@ function setup() {
   note3 = new Note();
 
 
-  //BOTAO FULLSCREEN
-  /*
-  fullscreenButton = createButton('FullScreen');
-  fullscreenButton.position(windowWidth * 0.75 - fullscreenButton.width/2 ,windowHeight * 0.05);
-  fullscreenButton.addClass('button');
-  fullscreenButton.style('border', '1px solid #ec1840');
-  fullscreenButton.touchStarted(goFullScreen);
-  //rato
-  fullscreenButton.mousePressed(goFullScreen);
-  */
-  
   //BOTAO PLAY MUSIC
 
   canvas.mousePressed(checkNote);
