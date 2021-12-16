@@ -360,7 +360,7 @@ function do2Note(){
 }
 
 function touchEnded(){
-  console.log("Ended5")
+  console.log("Ended5");
   if(notaselecionada!=null){
   port.noteOff(0,notaselecionada,127);
   }
