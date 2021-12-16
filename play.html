@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <title>Sketch</title>
 
@@ -20,34 +20,7 @@
   <body>
     <script src="game.js"></script>
     <script src="menu.js"></script>
-    <button id="guitar">Guitar</button>
-    <button id="piano">Piano</button>
+  <!--<a href="https://jazz-soft.net/demo/GeneralMidi.html">Lista Instrumentos</a> -->  
 
-    <a href="https://jazz-soft.net/demo/GeneralMidi.html">Lista Instrumentos</a>
-    <script>
-        JZZ.synth.Tiny.register('Web Audio');
-        var port = JZZ().openMidiOut();
-        port.ch(0).program('guitar')
-        port.ch(1).program('piano')
-
-        document.querySelector("#guitar").addEventListener('click', function() {
-          let note = parseInt(Math.random()*100);
-          console.log("Playing note: ", note, " on guitar");
-          port.noteOn(0, note, 127)
-          setTimeout(function() {
-          port.noteOff(0, note, 127)
-        }, 1000);
-        });
-        document.querySelector("#piano").addEventListener('click', function() {
-        let note = parseInt(Math.random()*127);
-        console.log("Playing note: ", note, " on piano");
-        port.noteOn(1, note, 127)
-        setTimeout(function() {
-        port.noteOff(1, note, 127)
-        }, 1000);
-
-        });
-
-</script>
   </body>
 </html>

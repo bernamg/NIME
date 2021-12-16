@@ -1,12 +1,9 @@
 let note;
 let count = 0;
-<<<<<<< HEAD
 let i=98;
-=======
 let selecionado = null;
 var port;
 
->>>>>>> 1e5d0f7e62c49c9677b61f01c7e2f26c2fbd63b9
 function preload(){
   bg = loadImage('images/background.jpg');
   col = color(36, 63, 141, 100);
@@ -24,10 +21,7 @@ function setup() {
   conjuntoButton.style('background-color', col);
   
 
-  saxfoneAlto = createImg('/images/saxofone-alto.png');
-  saxfoneAlto.position(350, 180);
-  saxfoneAlto.size(60,120);
-  saxfoneAlto.mousePressed(playSound);
+
 
   doButton = createButton('DÓ');
   doButton.position(windowWidth/10 - doButton.width*2,windowHeight*0.8);
@@ -97,48 +91,70 @@ function setup() {
    * INSTRUMENTOS
    * 
    */
-  button = createImg('guitarra.png');
+  /*
+  button = createImg('/images/guitarra-classica.png');
   button.position(410,270);
+  button.size(150,100);
   button.addClass('instrument');
   button.mousePressed(guitarra);
   button.touchStarted(guitarra);
 
-<<<<<<< HEAD
-
+*/
  
-=======
-  saxofoneI = createImg('saxofone.png');
+  saxofoneI = createImg('/images/saxofone-alto.png');
   saxofoneI.position(610,270);
+  saxofoneI.size(60,120);
   saxofoneI.addClass('instrument');
-  saxofoneI.mousePressed(saxofone);
-  saxofoneI.touchStarted(saxofone);
+  saxofoneI.mousePressed(AltoSax);
+  saxofoneI.touchStarted(AltoSax);
+
+  saxofoneSop = createImg('/images/saxofone-soprano.png');
+  saxofoneSop.position(400,200);
+  saxofoneSop.size(60,120);
+  saxofoneSop.addClass('instrument');
+  saxofoneSop.mousePressed(AltoSax);
+  saxofoneSop.touchStarted(AltoSax);
+
+  saxofoneBar = createImg('/images/saxofone-baritono.png');
+  saxofoneBar.position(800,200);
+  saxofoneBar.size(90,120);
+  saxofoneBar.addClass('instrument');
+  saxofoneBar.mousePressed(BaritonoSax);
+  saxofoneBar.touchStarted(BaritonoSax);
+
+  oboe = createImg('/images/oboe.png');
+  oboe.position(700,200);
+  oboe.size(90,120);
+  oboe.addClass('instrument');
+  oboe.mousePressed(OboeI);
+  oboe.touchStarted(OboeI);
+
+  fagote = createImg('/images/fagote.png');
+  fagote.position(700,400);
+  fagote.size(90,120);
+  fagote.addClass('instrument');
+  fagote.mousePressed(FagoteI);
+  fagote.touchStarted(FagoteI);
+
+  trompete = createImg('/images/trompete.png');
+  trompete.position(400,400);
+  trompete.size(90,120);
+  trompete.addClass('instrument');
+  trompete.mousePressed(TrompeteI);
+  trompete.touchStarted(TrompeteI);
   
->>>>>>> 1e5d0f7e62c49c9677b61f01c7e2f26c2fbd63b9
+  trombone = createImg('/images/trombone.png');
+  trombone.position(800,400);
+  trombone.size(90,120);
+  trombone.addClass('instrument');
+  trombone.mousePressed(TromboneI);
+  trombone.touchStarted(TromboneI);
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function playSound(){
-  print("playSound")
- 
-  JZZ.synth.Tiny.register('Web Audio');
-  var port = JZZ().openMidiOut();
-  port.ch(0).program('Alto Sax')
-
-  print("Antes da query selector")
-  let a = select('#saxfoneAlto')
-    print("Antes de random")
-    let note = parseInt(i);
-    print("Depois do random")
-    console.log("Playing note: ", note, " on guitar");
-    port.noteOn(0, note, 127)
-    setTimeout(function() {
-    port.noteOff(0, note, 127)
- //   i=i+1;
-    }, 1000);
-}
 
 function draw() {
   background(bg);
@@ -155,6 +171,8 @@ function draw() {
 }
 
 
+
+
 /*******************************
  * 
  * ALTERAR O INSTUMENTO
@@ -162,14 +180,50 @@ function draw() {
  */
 function guitarra(){
   console.log("Alterado para guitarra")
-  selecionado = 'guitar';
+  selecionado = 'Acoustic Guitar (nylon)';
   console.log(selecionado);
   port.ch(0).program(selecionado);
 }
 
-function saxofone(){
+function AltoSax(instrumento){
   console.log("Alterado para saxofone");
-  selecionado = 'piano';
+  selecionado = 'Alto Sax';
+  port.ch(0).program(selecionado);
+}
+
+function SopranoSax(instrumento){
+  console.log("Alterado para saxofone-soprano");
+  selecionado = 'Soprano Sax';
+  port.ch(0).program(selecionado);
+}
+
+function BaritonoSax(instrumento){
+  console.log("Alterado para saxofone-baritono");
+  selecionado = 'Baritone Sax';
+  port.ch(0).program(selecionado);
+}
+
+function OboeI(instrumento){
+  console.log("Alterado para saxofone-baritono");
+  selecionado = 'Oboe';
+  port.ch(0).program(selecionado);
+}
+
+function FagoteI(instrumento){
+  console.log("Alterado para fagote");
+  selecionado = 'Bassoon';
+  port.ch(0).program(selecionado);
+}
+
+function TrompeteI(instrumento){
+  console.log("Alterado para trompete");
+  selecionado = 'Trumpet';
+  port.ch(0).program(selecionado);
+}
+
+function TromboneI(instrumento){
+  console.log("Alterado para trombone");
+  selecionado = 'Trombone';
   port.ch(0).program(selecionado);
 }
 
@@ -182,30 +236,30 @@ function saxofone(){
 function doNote(){
   if(selecionado != null){
     console.log("Playing note: do on " + selecionado);
-    port.noteOn(0, 20, 127)
+    port.noteOn(0, 60, 127)
     setTimeout(function() {
-    port.noteOff(0, 20, 127)
-    }, 1000);
+    port.noteOff(0, 60, 127)
+    }, 500);
   }
 }
 
 function reNote(){
   if(selecionado != null){
     console.log("Playing note: re on " + selecionado);
-    port.noteOn(0, 30, 127)
+    port.noteOn(0, 62, 127)
     setTimeout(function() {
-    port.noteOff(0, 30, 127)
-    }, 1000);
+    port.noteOff(0, 62, 127)
+    }, 500);
   }
 }
 
 function miNote(){
   if(selecionado != null){
     console.log("Playing note: mi on " + selecionado);
-    port.noteOn(0, 35, 127)
+    port.noteOn(0, 64, 127)
     setTimeout(function() {
-    port.noteOff(0, 35, 127)
-    }, 1000);
+    port.noteOff(0, 64, 127)
+    }, 500);
   }
 }
 
@@ -213,47 +267,47 @@ function faNote(){
   console.log("NOTA DO");
   if(selecionado != null){
     console.log("Playing note: fa on " + selecionado);
-    port.noteOn(0, 50, 127)
+    port.noteOn(0, 65, 127)
     setTimeout(function() {
-    port.noteOff(0, 50, 127)
-    }, 1000);
+    port.noteOff(0, 65, 127)
+    }, 500);
   }
 }
 
 function solNote(){
   if(selecionado != null){
     console.log("Playing note: sol on " + selecionado);
-    port.noteOn(0, 60, 127)
+    port.noteOn(0, 67, 127)
     setTimeout(function() {
-    port.noteOff(0, 60, 127)
-    }, 1000);
+    port.noteOff(0, 67, 127)
+    }, 500);
   }
 }
 
 function laNote(){
   if(selecionado != null){
     console.log("Playing note: la on " + selecionado);
-    port.noteOn(0, 70, 127)
+    port.noteOn(0, 69, 127)
     setTimeout(function() {
-    port.noteOff(0, 70, 127)
-    }, 1000);
+    port.noteOff(0, 69, 127)
+    }, 500);
   }
 }
 function siNote(){
   if(selecionado != null){
     console.log("Playing note: si on " + selecionado);
-    port.noteOn(0, 80, 127)
+    port.noteOn(0, 71, 127)
     setTimeout(function() {
-    port.noteOff(0, 80, 127)
-    }, 1000);
+    port.noteOff(0, 71, 127)
+    }, 500);
   }
 }
 function do2Note(){
   if(selecionado != null){
     console.log("Playing note: do2 on " + selecionado);
-    port.noteOn(0, 90, 127)
+    port.noteOn(0, 72, 127)
     setTimeout(function() {
-    port.noteOff(0, 90, 127)
-    }, 1000);
+    port.noteOff(0, 72, 127)
+    }, 500);
   }
 }
