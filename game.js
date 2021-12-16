@@ -258,7 +258,8 @@ function doNote(){
 }
 
 function touchEnded(){
-  port.noteOff(0,127);
+  console.log("ended");
+  port.noteOff(0,62,127);
 }
 function reNote(){
   if(selecionado != null){
