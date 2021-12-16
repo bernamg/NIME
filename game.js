@@ -184,6 +184,7 @@ function draw() {
 
 
 function highlightSelected(col, li){
+  console.log("HIGHLIGHTEEEEEEEEEEEEEEEED")
   stroke(105,138,13);
   strokeWeight(5);
   line((width/10)*(3+col), (height/5)*(1+li), (width/10)*(4+col), (height/5)*(1+li));
