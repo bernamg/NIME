@@ -102,49 +102,49 @@ function setup() {
 */
  
   saxofoneI = createImg('/images/saxofone-alto.png');
-  saxofoneI.position(610,270);
+  saxofoneI.position(windowWidth/3.1,windowHeight/4.9);
   saxofoneI.size(60,120);
   saxofoneI.addClass('instrument');
   saxofoneI.mousePressed(AltoSax);
   saxofoneI.touchStarted(AltoSax);
 
   saxofoneSop = createImg('/images/saxofone-soprano.png');
-  saxofoneSop.position(400,200);
+  saxofoneSop.position(windowWidth/2.33,windowHeight/4.9);
   saxofoneSop.size(60,120);
   saxofoneSop.addClass('instrument');
   saxofoneSop.mousePressed(AltoSax);
   saxofoneSop.touchStarted(AltoSax);
 
   saxofoneBar = createImg('/images/saxofone-baritono.png');
-  saxofoneBar.position(800,200);
+  saxofoneBar.position(windowWidth/1.94,windowHeight/4.9);
   saxofoneBar.size(90,120);
   saxofoneBar.addClass('instrument');
   saxofoneBar.mousePressed(BaritonoSax);
   saxofoneBar.touchStarted(BaritonoSax);
 
   oboe = createImg('/images/oboe.png');
-  oboe.position(700,200);
+  oboe.position(windowWidth*0.62,windowHeight/4.9);
   oboe.size(90,120);
   oboe.addClass('instrument');
   oboe.mousePressed(OboeI);
   oboe.touchStarted(OboeI);
 
   fagote = createImg('/images/fagote.png');
-  fagote.position(700,400);
+  fagote.position(windowWidth/3.1,windowHeight/2.47);
   fagote.size(90,120);
   fagote.addClass('instrument');
   fagote.mousePressed(FagoteI);
   fagote.touchStarted(FagoteI);
 
   trompete = createImg('/images/trompete.png');
-  trompete.position(400,400);
+  trompete.position(windowWidth/2.4,windowHeight/2.47);
   trompete.size(90,120);
   trompete.addClass('instrument');
   trompete.mousePressed(TrompeteI);
   trompete.touchStarted(TrompeteI);
   
   trombone = createImg('/images/trombone.png');
-  trombone.position(800,400);
+  trombone.position(windowWidth/1.94,windowHeight/2.47);
   trombone.size(90,120);
   trombone.addClass('instrument');
   trombone.mousePressed(TromboneI);
@@ -159,12 +159,12 @@ function windowResized() {
 function draw() {
   background(bg);
 
-  for (var x = (width/10)*2; x <= width - (width/10)*2; x += width / 10) {
+  for (var x = (width/10)*3; x <= width - (width/10)*3; x += width / 10) {
 		for (var y = 0; y < height - height/5; y += height / 5) {
 			stroke(0);
 			strokeWeight(1);
 			line(x, (height/5), x, height-(height/5)*2);
-			line((width/10)*2, y, width-(width/10)*2, y);
+			line((width/10)*3, y, width-(width/10)*3, y);
 		}
 	}
 
