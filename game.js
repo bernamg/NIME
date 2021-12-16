@@ -2,6 +2,7 @@ let note;
 let count = 0;
 let i=98;
 let selecionado = null;
+let notaselecionada = null
 var port;
 
 function preload(){
@@ -250,18 +251,17 @@ function TubaI(instrumento){
 function doNote(){
   if(selecionado != null){
     console.log("Playing note: do on " + selecionado);
+    notaselecionada=60;
     port.noteOn(0, 60, 127)
   }
 }
 
-function touchEnded(){
-  console.log("Ended4")
-  port.noteOff(0,60,127);
-}
+
 
 function reNote(){
   if(selecionado != null){
     console.log("Playing note: re on " + selecionado);
+    notaselecionada=62;
     port.noteOn(0, 62, 127);
   }
 }
@@ -270,6 +270,7 @@ function reNote(){
 function miNote(){
   if(selecionado != null){
     console.log("Playing note: mi on " + selecionado);
+    notaselecionada=64;
     port.noteOn(0, 64, 127)
   }
 }
@@ -279,9 +280,7 @@ function faNote(){
   if(selecionado != null){
     console.log("Playing note: fa on " + selecionado);
     port.noteOn(0, 65, 127)
-    setTimeout(function() {
-    port.noteOff(0, 65, 127)
-    }, 500);
+    notaselecionada=65;
   }
 }
 
@@ -289,9 +288,7 @@ function solNote(){
   if(selecionado != null){
     console.log("Playing note: sol on " + selecionado);
     port.noteOn(0, 67, 127)
-    setTimeout(function() {
-    port.noteOff(0, 67, 127)
-    }, 500);
+    notaselecionada=67;
   }
 }
 
@@ -299,26 +296,27 @@ function laNote(){
   if(selecionado != null){
     console.log("Playing note: la on " + selecionado);
     port.noteOn(0, 69, 127)
-    setTimeout(function() {
-    port.noteOff(0, 69, 127)
-    }, 500);
+    notaselecionada=69;
   }
 }
 function siNote(){
   if(selecionado != null){
     console.log("Playing note: si on " + selecionado);
     port.noteOn(0, 71, 127)
-    setTimeout(function() {
-    port.noteOff(0, 71, 127)
-    }, 500);
+    notaselecionada=71;
   }
 }
 function do2Note(){
   if(selecionado != null){
     console.log("Playing note: do2 on " + selecionado);
     port.noteOn(0, 72, 127)
-    setTimeout(function() {
-    port.noteOff(0, 72, 127)
-    }, 500);
+    notaselecionada=72;
+  }
+}
+
+function touchEnded(){
+  console.log("Ended5")
+  if(notaselecionada!=null){
+  port.noteOff(0,notaselecionada,127);
   }
 }
