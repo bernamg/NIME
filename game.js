@@ -13,6 +13,13 @@ function setup() {
   JZZ.synth.Tiny.register('Web Audio');
   port = JZZ().openMidiOut();
 
+  conjuntoButton = createButton('Tocar em Conjunto');
+  conjuntoButton.position(windowWidth*0.80 -conjuntoButton.width, windowHeight* 0.10);
+  conjuntoButton.addClass('button');
+  conjuntoButton.style('border', '1px solid #243F8D');
+  conjuntoButton.style('background-color', col);
+  
+
   doButton = createButton('DÓ');
   doButton.position(windowWidth/10 - doButton.width*2,windowHeight*0.8);
   doButton.addClass('note_button');
