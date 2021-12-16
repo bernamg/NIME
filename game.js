@@ -101,42 +101,42 @@ function setup() {
 
 */
  
-  saxofoneI = createImg('/images/saxofone-alto.png');
+  saxofoneI = createImg('images/saxofone-alto.png');
   saxofoneI.position(windowWidth/3.1,windowHeight/4.9);
   saxofoneI.size(60,120);
   saxofoneI.addClass('instrument');
   saxofoneI.mousePressed(AltoSax);
   saxofoneI.touchStarted(AltoSax);
 
-  saxofoneSop = createImg('/images/saxofone-soprano.png');
+  saxofoneSop = createImg('images/saxofone-soprano.png');
   saxofoneSop.position(windowWidth/2.33,windowHeight/4.9);
   saxofoneSop.size(60,120);
   saxofoneSop.addClass('instrument');
   saxofoneSop.mousePressed(AltoSax);
   saxofoneSop.touchStarted(AltoSax);
 
-  saxofoneBar = createImg('/images/saxofone-baritono.png');
+  saxofoneBar = createImg('images/saxofone-baritono.png');
   saxofoneBar.position(windowWidth/1.94,windowHeight/4.9);
   saxofoneBar.size(90,120);
   saxofoneBar.addClass('instrument');
   saxofoneBar.mousePressed(BaritonoSax);
   saxofoneBar.touchStarted(BaritonoSax);
 
-  oboe = createImg('/images/oboe.png');
+  oboe = createImg('images/oboe.png');
   oboe.position(windowWidth*0.62,windowHeight/4.9);
   oboe.size(90,120);
   oboe.addClass('instrument');
   oboe.mousePressed(OboeI);
   oboe.touchStarted(OboeI);
 
-  fagote = createImg('/images/fagote.png');
+  fagote = createImg('images/fagote.png');
   fagote.position(windowWidth/3.1,windowHeight/2.47);
   fagote.size(90,120);
   fagote.addClass('instrument');
   fagote.mousePressed(FagoteI);
   fagote.touchStarted(FagoteI);
 
-  trompete = createImg('/images/trompete.png');
+  trompete = createImg('images/trompete.png');
   trompete.position(windowWidth/2.4,windowHeight/2.47);
   trompete.size(90,120);
   trompete.addClass('instrument');
@@ -150,7 +150,7 @@ function setup() {
   trombone.mousePressed(TromboneI);
   trombone.touchStarted(TromboneI);
 
-  tuba = createImg('/images/tuba.png');
+  tuba = createImg('images/tuba.png');
   tuba.position(400,100);
   tuba.size(90,120);
   tuba.addClass('instrument');
