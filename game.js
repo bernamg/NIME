@@ -143,7 +143,7 @@ function setup() {
   trompete.mousePressed(TrompeteI);
   trompete.touchStarted(TrompeteI);
   
-  trombone = createImg('/images/trombone.png');
+  trombone = createImg('images/trombone.png');
   trombone.position(windowWidth/1.94,windowHeight/2.47);
   trombone.size(90,120);
   trombone.addClass('instrument');
@@ -259,10 +259,10 @@ function doNote(){
 function reNote(){
   if(selecionado != null){
     console.log("Playing note: re on " + selecionado);
-    while(mouseIsPressed){
-      port.noteOn(0, 62, 127);
+    port.noteOn(0, 62, 127);
+    if(!mouseIsPressed){  
+      port.noteOff(0, 62, 127)
     }
-    port.noteOff(0, 62, 127)
   }
 }
 
