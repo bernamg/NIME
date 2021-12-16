@@ -247,11 +247,6 @@ function TubaI(instrumento){
 * NOTAS           
 *                        
 */
-function touchEnded(){
-  console.log("Ended3")
-  port.noteOff(0,127);
-}
-
 function doNote(){
   if(selecionado != null){
     console.log("Playing note: do on " + selecionado);
@@ -259,6 +254,10 @@ function doNote(){
   }
 }
 
+function touchEnded(){
+  console.log("Ended4")
+  port.noteOff(0,60,127);
+}
 
 function reNote(){
   if(selecionado != null){
@@ -272,7 +271,6 @@ function miNote(){
   if(selecionado != null){
     console.log("Playing note: mi on " + selecionado);
     port.noteOn(0, 64, 127)
-  }
 }
 
 function faNote(){
