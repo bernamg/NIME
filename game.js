@@ -260,10 +260,14 @@ function reNote(){
   if(selecionado != null){
     console.log("Playing note: re on " + selecionado);
     port.noteOn(0, 62, 127);
-    if(!mouseIsPressed){  
+    if(mouseReleased){  
       port.noteOff(0, 62, 127)
     }
   }
+}
+
+function mouseReleased(){
+  
 }
 
 function miNote(){
