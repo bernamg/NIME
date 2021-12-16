@@ -151,7 +151,7 @@ function setup() {
   trombone.mousePressed(TromboneI);
   trombone.touchStarted(TromboneI);
 
-  tuba = createImg('/images/tuba.png');
+  tuba = createImg('images/tuba.png');
   tuba.position(windowWidth*0.62,windowHeight/2.47);
   tuba.size(90,120);
   tuba.addClass('instrument');
