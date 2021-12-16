@@ -31,11 +31,11 @@
         port.ch(1).program('piano')
 
         document.querySelector("#guitar").addEventListener('click', function() {
-        let note = parseInt(Math.random()*100);
-        console.log("Playing note: ", note, " on guitar");
-        port.noteOn(0, note, 127)
-        setTimeout(function() {
-        port.noteOff(0, note, 127)
+          let note = parseInt(Math.random()*100);
+          console.log("Playing note: ", note, " on guitar");
+          port.noteOn(0, note, 127)
+          setTimeout(function() {
+          port.noteOff(0, note, 127)
         }, 1000);
         });
         document.querySelector("#piano").addEventListener('click', function() {

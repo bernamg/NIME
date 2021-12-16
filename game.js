@@ -1,6 +1,6 @@
 let note;
 let count = 0;
-
+let i=98;
 function preload(){
   bg = loadImage('images/background.jpg');
   col = color(36, 63, 141, 100);
@@ -8,6 +8,11 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  saxfoneAlto = createImg('/images/saxofone-alto.png');
+  saxfoneAlto.position(350, 180);
+  saxfoneAlto.size(60,120);
+  saxfoneAlto.mousePressed(playSound);
 
   doButton = createButton('DÓ');
   doButton.position(windowWidth/10 - doButton.width*2,windowHeight*0.8);
@@ -57,10 +62,32 @@ function setup() {
   do2Button.style('border', '1px solid #243F8D');
   do2Button.style('background-color', col);
 
+
+ 
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function playSound(){
+  print("playSound")
+ 
+  JZZ.synth.Tiny.register('Web Audio');
+  var port = JZZ().openMidiOut();
+  port.ch(0).program('Alto Sax')
+
+  print("Antes da query selector")
+  let a = select('#saxfoneAlto')
+    print("Antes de random")
+    let note = parseInt(i);
+    print("Depois do random")
+    console.log("Playing note: ", note, " on guitar");
+    port.noteOn(0, note, 127)
+    setTimeout(function() {
+    port.noteOff(0, note, 127)
+ //   i=i+1;
+    }, 1000);
 }
 
 function draw() {
