@@ -149,6 +149,13 @@ function setup() {
   trombone.addClass('instrument');
   trombone.mousePressed(TromboneI);
   trombone.touchStarted(TromboneI);
+
+  tuba = createImg('/images/tuba.png');
+  tuba.position(400,100);
+  tuba.size(90,120);
+  tuba.addClass('instrument');
+  tuba.mousePressed(TubaI);
+  tuba.touchStarted(TubaI);
 }
 
 function windowResized() {
@@ -187,43 +194,49 @@ function guitarra(){
 
 function AltoSax(instrumento){
   console.log("Alterado para saxofone");
-  selecionado = 'Alto Sax';
+  selecionado = 65;
   port.ch(0).program(selecionado);
 }
 
 function SopranoSax(instrumento){
   console.log("Alterado para saxofone-soprano");
-  selecionado = 'Soprano Sax';
+  selecionado = 64;
   port.ch(0).program(selecionado);
 }
 
 function BaritonoSax(instrumento){
   console.log("Alterado para saxofone-baritono");
-  selecionado = 'Baritone Sax';
+  selecionado = 67;
   port.ch(0).program(selecionado);
 }
 
 function OboeI(instrumento){
   console.log("Alterado para saxofone-baritono");
-  selecionado = 'Oboe';
+  selecionado = 69;
   port.ch(0).program(selecionado);
 }
 
 function FagoteI(instrumento){
   console.log("Alterado para fagote");
-  selecionado = 'Bassoon';
+  selecionado = 70;
   port.ch(0).program(selecionado);
 }
 
 function TrompeteI(instrumento){
   console.log("Alterado para trompete");
-  selecionado = 'Trumpet';
+  selecionado = 56;
   port.ch(0).program(selecionado);
 }
 
 function TromboneI(instrumento){
   console.log("Alterado para trombone");
-  selecionado = 'Trombone';
+  selecionado = 57;
+  port.ch(0).program(selecionado);
+}
+
+function TubaI(instrumento){
+  console.log("Alterado para tuba");
+  selecionado = 58;
   port.ch(0).program(selecionado);
 }
 
@@ -246,10 +259,10 @@ function doNote(){
 function reNote(){
   if(selecionado != null){
     console.log("Playing note: re on " + selecionado);
-    port.noteOn(0, 62, 127)
-    setTimeout(function() {
+    while(mouseIsPressed){
+      port.noteOn(0, 62, 127);
+    }
     port.noteOff(0, 62, 127)
-    }, 500);
   }
 }
 
