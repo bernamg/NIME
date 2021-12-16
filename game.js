@@ -11,6 +11,7 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  windowResized();
   JZZ.synth.Tiny.register('Web Audio');
   port = JZZ().openMidiOut();
 
@@ -24,7 +25,7 @@ function setup() {
 
 
   doButton = createButton('DÓ');
-  doButton.position(windowWidth/10 - doButton.width*2,windowHeight*0.8);
+  doButton.position(windowWidth/10 - doButton.width*2,windowHeight*0.7);
   doButton.addClass('note_button');
   doButton.style('border', '1px solid #243F8D');
   doButton.style('background-color', col);
@@ -32,7 +33,7 @@ function setup() {
   doButton.touchStarted(doNote);
 
   reButton = createButton('RÉ');
-  reButton.position(windowWidth/10,windowHeight*0.8);
+  reButton.position(windowWidth/10,windowHeight*0.7);
   reButton.addClass('note_button');
   reButton.style('border', '1px solid #243F8D');
   reButton.style('background-color', col);
@@ -40,7 +41,7 @@ function setup() {
   reButton.touchStarted(reNote);
 
   miButton = createButton('MI');
-  miButton.position(windowWidth/10 + doButton.width*2,windowHeight*0.8);
+  miButton.position(windowWidth/10 + doButton.width*2,windowHeight*0.7);
   miButton.addClass('note_button');
   miButton.style('border', '1px solid #243F8D');
   miButton.style('background-color', col);
@@ -48,7 +49,7 @@ function setup() {
   miButton.touchStarted(miNote);
 
   faButton = createButton('FÁ');
-  faButton.position(windowWidth/10 + doButton.width*4,windowHeight*0.8);
+  faButton.position(windowWidth/10 + doButton.width*4,windowHeight*0.7);
   faButton.addClass('note_button');
   faButton.style('border', '1px solid #243F8D');
   faButton.style('background-color', col);
@@ -56,7 +57,7 @@ function setup() {
   faButton.touchStarted(faNote);
 
   solButton = createButton('SOL');
-  solButton.position(windowWidth/10 + doButton.width*6,windowHeight*0.8);
+  solButton.position(windowWidth/10 + doButton.width*6,windowHeight*0.7);
   solButton.addClass('note_button');
   solButton.style('border', '1px solid #243F8D');
   solButton.style('background-color', col);
@@ -64,7 +65,7 @@ function setup() {
   solButton.touchStarted(solNote);
 
   laButton = createButton('LÁ');
-  laButton.position(windowWidth/10 + doButton.width*8,windowHeight*0.8);
+  laButton.position(windowWidth/10 + doButton.width*8,windowHeight*0.7);
   laButton.addClass('note_button');
   laButton.style('border', '1px solid #243F8D');
   laButton.style('background-color', col);
@@ -72,7 +73,7 @@ function setup() {
   laButton.touchStarted(laNote);
 
   siButton = createButton('SI');
-  siButton.position(windowWidth/10 + doButton.width*10,windowHeight*0.8);
+  siButton.position(windowWidth/10 + doButton.width*10,windowHeight*0.7);
   siButton.addClass('note_button');
   siButton.style('border', '1px solid #243F8D');
   siButton.style('background-color', col);
@@ -80,7 +81,7 @@ function setup() {
   siButton.touchStarted(siNote);
 
   do2Button = createButton('DÓ');
-  do2Button.position(windowWidth/10 + doButton.width*12,windowHeight*0.8);
+  do2Button.position(windowWidth/10 + doButton.width*12,windowHeight*0.7);
   do2Button.addClass('note_button');
   do2Button.style('border', '1px solid #243F8D');
   do2Button.style('background-color', col);
@@ -112,8 +113,8 @@ function setup() {
   saxofoneSop.position(windowWidth/2.33,windowHeight/4.9);
   saxofoneSop.size(60,120);
   saxofoneSop.addClass('instrument');
-  saxofoneSop.mousePressed(AltoSax);
-  saxofoneSop.touchStarted(AltoSax);
+  saxofoneSop.mousePressed(SopranoSax);
+  saxofoneSop.touchStarted(SopranoSax);
 
   saxofoneBar = createImg('images/saxofone-baritono.png');
   saxofoneBar.position(windowWidth/1.94,windowHeight/4.9);
@@ -260,14 +261,16 @@ function reNote(){
   if(selecionado != null){
     console.log("Playing note: re on " + selecionado);
     port.noteOn(0, 62, 127);
-    if(mouseReleased){  
+    if(touchEnded){  
+      print("Hello touch")
       port.noteOff(0, 62, 127)
     }
   }
 }
 
+
 function mouseReleased(){
-  
+
 }
 
 function miNote(){
