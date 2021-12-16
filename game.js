@@ -257,21 +257,16 @@ function doNote(){
   }
 }
 
+function touchEnded(){
+  port.noteOff();
+}
 function reNote(){
   if(selecionado != null){
     console.log("Playing note: re on " + selecionado);
     port.noteOn(0, 62, 127);
-    if(touchEnded){  
-      print("Hello touch")
-      port.noteOff(0, 62, 127)
-    }
   }
 }
 
-
-function mouseReleased(){
-
-}
 
 function miNote(){
   if(selecionado != null){
