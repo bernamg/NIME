@@ -1,4 +1,4 @@
-let note;
+let note = [];
 let count = 0;
 let i=98;
 let selecionado = null;
@@ -12,8 +12,9 @@ checkList[2] = [];
 checkList[3] = [];
 let last_instrument = "";
 let instrument_list = [];
-let notex = 0;
-let notey = 0;
+let notex = [];
+let notey = [];
+let dirx = [];
 let solo = 1;
 let player_number = 1;
 let shiftable = false;
@@ -36,6 +37,7 @@ function setup() {
   conjuntoButton.style('border', '1px solid #243F8D');
   conjuntoButton.style('background-color', col);
   conjuntoButton.mousePressed(switchButton);
+  conjuntoButton.touchStarted(switchButton);
 
   soloButton = createButton('Tocar a Solo');
   soloButton.position(windowWidth*0.75, windowHeight* 0.10);
@@ -44,6 +46,7 @@ function setup() {
   soloButton.style('background-color', col);
   soloButton.hide();
   soloButton.mousePressed(switchButton);
+  soloButton.touchStarted(switchButton);
 
 
   doButton = createButton('DÓ');
@@ -209,7 +212,7 @@ function draw() {
     highlightSelected();
   }
 
-  if(notex!=0 && notey!=0){
+  if(notex[-1]!=0 && notey[-1]!=0){
     animatedNote();
   }
 }
@@ -245,9 +248,11 @@ function animatedNote(){
   fill(105,138,13);
   textSize(15);
   textFont('Times New Roman');
-  text(note, notex, notey);
-  notex += 0.5;
-  notey -= 0.5;
+  for (let i = 0; i < notex.length; i++){
+    text(note[i], notex[i], notey[i]);
+    notex[i] += dirx[i];
+    notey[i] -= 0.5;
+  }
 }
 
 function highlightSelected(){
@@ -422,15 +427,16 @@ function TubaI(instrumento){
 */
 function doNote(){
   if(selecionado != null){
-    note = "DO";
+    note.push("DO");
 
     console.log("Playing note: do on " + selecionado);
     notaselecionada=60;
     port.noteOn(0, 60, 127)
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-0.5,0.5));
     }
   }
 }
@@ -439,15 +445,16 @@ function doNote(){
 
 function reNote(){
   if(selecionado != null){
-    note = "RE";
+    note.push("RE");
 
     console.log("Playing note: re on " + selecionado);
     notaselecionada=62;
     port.noteOn(0, 62, 127);
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-1,1));
     }
   }
 }
@@ -455,15 +462,16 @@ function reNote(){
 
 function miNote(){
   if(selecionado != null){
-    note = "MI";
+    note.push("MI");
 
     console.log("Playing note: mi on " + selecionado);
     notaselecionada=64;
     port.noteOn(0, 64, 127)
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-1,1));
     }
   }
   
@@ -471,73 +479,78 @@ function miNote(){
 
 function faNote(){
   if(selecionado != null){
-    note = "FA";
+    note.push("FA");
 
     console.log("Playing note: fa on " + selecionado);
     port.noteOn(0, 65, 127)
     notaselecionada=65;
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-1,1));
     }
   }
 }
 
 function solNote(){
   if(selecionado != null){
-    note = "SOL";
+    note.push("SOL");
 
     console.log("Playing note: sol on " + selecionado);
     port.noteOn(0, 67, 127)
     notaselecionada=67;
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-1,1));
     }
   }
 }
 
 function laNote(){
   if(selecionado != null){
-    note = "LA";
+    note.push("LA");
 
     console.log("Playing note: la on " + selecionado);
     port.noteOn(0, 69, 127)
     notaselecionada=69;
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-1,1));
     }
   }
 }
 function siNote(){
   if(selecionado != null){
-    note = "SI";
+    note.push("SI");
 
     console.log("Playing note: si on " + selecionado);
     port.noteOn(0, 71, 127)
     notaselecionada=71;
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-1,1));
     }
   }
 }
 function do2Note(){
   if(selecionado != null){
-    note = "DO";
+    note.push("DO");
 
     console.log("Playing note: do2 on " + selecionado);
     port.noteOn(0, 72, 127)
     notaselecionada=72;
 
     if(instrument_list[0] == "Saxofone"){
-      notex = windowWidth/2.75;
-      notey = windowHeight/3.4;
+      notex.push(windowWidth/2.75);
+      notey.push(windowHeight/3.4);
+      dirx.push(random(-1,1));
     }
   }
 }
