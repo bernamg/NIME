@@ -252,6 +252,12 @@ function animatedNote(){
     text(note[i], notex[i], notey[i]);
     notex[i] += dirx[i];
     notey[i] -= 0.5;
+    if(notey[i]<0){
+      notey.shift();
+      notex.shift()
+      dirx.shift();
+      note.shift();
+    }
   }
 }
 
