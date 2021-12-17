@@ -4,12 +4,23 @@ let i=98;
 let selecionado = null;
 let notaselecionada = null
 var port;
-let col=0;
-let li=0;
-let instrument = "";
+let coluna=[];
+let linha=[];
+let checkList = [3];
+checkList[1] = [];
+checkList[2] = [];
+checkList[3] = [];
+let last_instrument = "";
+let instrument_list = [];
+let notex = 0;
+let notey = 0;
+let solo = 1;
+let player_number = 1;
+let shiftable = false;
 
 function preload(){
   bg = loadImage('images/background.jpg');
+  font = loadFont('font/titlespace.otf');
   col = color(36, 63, 141, 100);
 }
 
@@ -20,12 +31,19 @@ function setup() {
   port = JZZ().openMidiOut();
 
   conjuntoButton = createButton('Tocar em Conjunto');
-  conjuntoButton.position(windowWidth*0.80 -conjuntoButton.width, windowHeight* 0.10);
+  conjuntoButton.position(windowWidth*0.75, windowHeight* 0.10);
   conjuntoButton.addClass('button');
   conjuntoButton.style('border', '1px solid #243F8D');
   conjuntoButton.style('background-color', col);
-  
+  conjuntoButton.mousePressed(switchButton);
 
+  soloButton = createButton('Tocar a Solo');
+  soloButton.position(windowWidth*0.75, windowHeight* 0.10);
+  soloButton.addClass('button');
+  soloButton.style('border', '1px solid #243F8D');
+  soloButton.style('background-color', col);
+  soloButton.hide();
+  soloButton.mousePressed(switchButton);
 
 
   doButton = createButton('DÓ');
@@ -179,27 +197,128 @@ function draw() {
 			line((width/10)*3, y, width-(width/10)*3, y);
 		}
 	}
-  if(selecionado!=null){
+  
+  if(selecionado!=null && player_number==1){
+    if(shiftable){
+      shiftable = false;
+      checkInstrument();
+    }
     highlightSelected();
+  }
+  else if(selecionado!=null && player_number==3){
+    highlightSelected();
+  }
+
+  if(notex!=0 && notey!=0){
+    animatedNote();
   }
 }
 
+function switchButton(){
+  last_instrument = "";
+  selecionado = null;
+  instrument_list = [];
+  coluna = [];
+  linha = [];
+
+  checkList = [3];
+  checkList[1] = [];
+  checkList[2] = [];
+  checkList[3] = [];
+
+  if(solo == 1){
+    conjuntoButton.hide();
+    soloButton.show();
+    solo = 0;
+    player_number = 3;
+  }
+  else{
+    conjuntoButton.show();
+    soloButton.hide();
+    solo = 1;
+    player_number = 1;
+  }
+}
+
+function animatedNote(){
+  strokeWeight(1);
+  fill(105,138,13);
+  textSize(15);
+  textFont('Times New Roman');
+  text(note, notex, notey);
+  notex += 0.5;
+  notey -= 0.5;
+}
 
 function highlightSelected(){
-  textSize(50);
-  textAlign(CENTER, CENTER);
-  text(instrument, width/2, height*0.1);
   fill(105,138,13);
+  textSize(40);
+  textFont(font);
+  textAlign(CENTER, CENTER);
+
+  if(player_number==1){
+    text(instrument_list[0], width/2, height*0.1);
+  }
+  else{
+    text(instrument_list[0], width/2, height*0.03);
+  }
+
   stroke(105,138,13);
   strokeWeight(5);
-  line((width/10)*(3+col), (height/5)*(1+li), (width/10)*(4+col), (height/5)*(1+li));
-  line((width/10)*(3+col), (height/5)*(2+li),(width/10)*(4+col), (height/5)*(2+li));
 
-  line((width/10)*(3+col), (height/5)*(1+li), (width/10)*(3+col), (height/5)*(2+li));
-  line((width/10)*(4+col), (height/5)*(1+li), (width/10)*(4+col), (height/5)*(2+li));
+  line((width/10)*(3+coluna[0]), (height/5)*(1+linha[0]), (width/10)*(4+coluna[0]), (height/5)*(1+linha[0]));
+  line((width/10)*(3+coluna[0]), (height/5)*(2+linha[0]),(width/10)*(4+coluna[0]), (height/5)*(2+linha[0]));
+  line((width/10)*(3+coluna[0]), (height/5)*(1+linha[0]), (width/10)*(3+coluna[0]), (height/5)*(2+linha[0]));
+  line((width/10)*(4+coluna[0]), (height/5)*(1+linha[0]), (width/10)*(4+coluna[0]), (height/5)*(2+linha[0]));
 
-  
-  //rect((width/10)*(3+col), (height/5)*(1+li), width/10, height/5);
+  if(player_number == 3){
+
+    noStroke();
+    fill(255,21,170);
+    text(instrument_list[1], width/2, height*0.09);
+
+    stroke(255,21,170);
+    line((width/10)*(3+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(4+coluna[1]), (height/5)*(1+linha[1]));
+    line((width/10)*(3+coluna[1]), (height/5)*(2+linha[1]),(width/10)*(4+coluna[1]), (height/5)*(2+linha[1]));
+    line((width/10)*(3+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(3+coluna[1]), (height/5)*(2+linha[1]));
+    line((width/10)*(4+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(4+coluna[1]), (height/5)*(2+linha[1]));
+
+    noStroke();
+    fill(195,104,0);
+    text(instrument_list[2], width/2, height*0.15);
+
+    stroke(195,104,0);
+    line((width/10)*(3+coluna[2]), (height/5)*(1+linha[2]), (width/10)*(4+coluna[2]), (height/5)*(1+linha[2]));
+    line((width/10)*(3+coluna[2]), (height/5)*(2+linha[2]),(width/10)*(4+coluna[2]), (height/5)*(2+linha[2]));
+    line((width/10)*(3+coluna[2]), (height/5)*(1+linha[2]), (width/10)*(3+coluna[2]), (height/5)*(2+linha[2]));
+    line((width/10)*(4+coluna[2]), (height/5)*(1+linha[2]), (width/10)*(4+coluna[2]), (height/5)*(2+linha[2]));
+  }
+}
+
+function setHighlightPosition(c, l){
+  if(player_number==1){
+    if(coluna[-1]!=c && linha[-1]!=l){
+      coluna.push(c);
+      linha.push(l);
+    }
+  }
+  else{
+      coluna.push(c);
+      linha.push(l);
+  }
+  shiftable = true;
+}
+
+function checkInstrument(){
+  if(last_instrument == ""){
+    last_instrument = instrument_list[0];
+  }
+  else{
+    coluna.shift();
+    linha.shift();
+    instrument_list.shift();
+    last_instrument = instrument_list[0];
+  }
 }
 
 /*******************************
@@ -208,7 +327,7 @@ function highlightSelected(){
  * 
  */
 function guitarra(){
-  instrument = "Guitarra";
+  instrument_list[0] = "Guitarra";
   console.log("Alterado para guitarra")
   selecionado = 'Acoustic Guitar (nylon)';
   console.log(selecionado);
@@ -216,72 +335,80 @@ function guitarra(){
 }
 
 function AltoSax(instrumento){
-  col=0;
-  li=0;
-  instrument = "Saxofone";
+  setHighlightPosition(0,0);
+
+  instrument_list.push("Saxofone");
+  
   console.log("Alterado para saxofone");
   selecionado = 65;
   port.ch(0).program(selecionado);
 }
 
 function SopranoSax(instrumento){
-  col=1;
-  li=0;
-  instrument = "Saxofone Soprano";
+  setHighlightPosition(1,0);
+
+  instrument_list.push("Saxofone Soprano");
+
   console.log("Alterado para saxofone-soprano");
   selecionado = 64;
   port.ch(0).program(selecionado);
 }
 
 function BaritonoSax(instrumento){
-  col=2;
-  li=0;
-  instrument = "Saxofone Baritono";
+  setHighlightPosition(2,0);
+
+  instrument_list.push("Saxofone Baritono");
+
   console.log("Alterado para saxofone-baritono");
   selecionado = 67;
   port.ch(0).program(selecionado);
 }
 
 function OboeI(instrumento){
-  col=3;
-  li=0;
-  instrument = "Oboe";
+  setHighlightPosition(3,0);
+
+  instrument_list.push("Oboe");
+
   console.log("Alterado para Oboe");
   selecionado = 69;
   port.ch(0).program(selecionado);
 }
 
 function FagoteI(instrumento){
-  col=0;
-  li=1;
-  instrument = "Fagote";
+  setHighlightPosition(0,1);
+
+  instrument_list.push("Fagote");
+ 
   console.log("Alterado para fagote");
   selecionado = 70;
   port.ch(0).program(selecionado);
 }
 
 function TrompeteI(instrumento){
-  col=1;
-  li=1;
-  instrument = "Trompete";
+  setHighlightPosition(1,1);
+
+  instrument_list.push("Trompete");
+
   console.log("Alterado para trompete");
   selecionado = 56;
   port.ch(0).program(selecionado);
 }
 
 function TromboneI(instrumento){
-  col=2;
-  li=1;
-  instrument = "Trombone";
+  setHighlightPosition(2,1);
+
+  instrument_list.push("Trombone");
+
   console.log("Alterado para trombone");
   selecionado = 57;
   port.ch(0).program(selecionado);
 }
 
 function TubaI(instrumento){
-  col=3;
-  li=1;
-  instrument = "Tuba";
+  setHighlightPosition(3,1);
+
+  instrument_list.push("Tuba");
+ 
   console.log("Alterado para tuba");
   selecionado = 58;
   port.ch(0).program(selecionado);
@@ -295,9 +422,16 @@ function TubaI(instrumento){
 */
 function doNote(){
   if(selecionado != null){
+    note = "DO";
+
     console.log("Playing note: do on " + selecionado);
     notaselecionada=60;
     port.noteOn(0, 60, 127)
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
 }
 
@@ -305,57 +439,106 @@ function doNote(){
 
 function reNote(){
   if(selecionado != null){
+    note = "RE";
+
     console.log("Playing note: re on " + selecionado);
     notaselecionada=62;
     port.noteOn(0, 62, 127);
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
 }
 
 
 function miNote(){
   if(selecionado != null){
+    note = "MI";
+
     console.log("Playing note: mi on " + selecionado);
     notaselecionada=64;
     port.noteOn(0, 64, 127)
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
+  
 }
 
 function faNote(){
-  console.log("NOTA DO");
   if(selecionado != null){
+    note = "FA";
+
     console.log("Playing note: fa on " + selecionado);
     port.noteOn(0, 65, 127)
     notaselecionada=65;
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
 }
 
 function solNote(){
   if(selecionado != null){
+    note = "SOL";
+
     console.log("Playing note: sol on " + selecionado);
     port.noteOn(0, 67, 127)
     notaselecionada=67;
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
 }
 
 function laNote(){
   if(selecionado != null){
+    note = "LA";
+
     console.log("Playing note: la on " + selecionado);
     port.noteOn(0, 69, 127)
     notaselecionada=69;
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
 }
 function siNote(){
   if(selecionado != null){
+    note = "SI";
+
     console.log("Playing note: si on " + selecionado);
     port.noteOn(0, 71, 127)
     notaselecionada=71;
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
 }
 function do2Note(){
   if(selecionado != null){
+    note = "DO";
+
     console.log("Playing note: do2 on " + selecionado);
     port.noteOn(0, 72, 127)
     notaselecionada=72;
+
+    if(instrument_list[0] == "Saxofone"){
+      notex = windowWidth/2.75;
+      notey = windowHeight/3.4;
+    }
   }
 }
 
