@@ -230,7 +230,7 @@ function playMenu(){
   song1.stop();
   song2.stop();
   play_sound.play();
-  window.location.href="play.html";
+  window.location.href="game.html";
 }
 
 function checkNote(){

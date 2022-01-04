@@ -1,0 +1,103 @@
+@font-face {
+  font-family: title;
+  src: url("font/titlespace.otf");
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+.button{
+  position: relative;
+  width: 20%;
+  height: 10%;
+  line-height: 60px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: black;
+  -webkit-filter: drop-shadow(5px 5px 5px black);
+  filter: drop-shadow(5px 5px 5px black);
+}
+
+.button:active {
+  background-color: #fff;
+}
+
+.sair_button{
+  position: relative;
+  width: 10%;
+  height: 10%;
+  line-height: 60px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 20px;
+  border-radius: 20px;
+  background-color: black;
+}
+
+.note_button{
+  position: relative;
+  width: 5%;
+  height: 10%;
+  line-height: 60px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 16px;
+  border-radius: 50%;
+  background-color: black;
+  -webkit-filter: drop-shadow(5px 5px 5px black);
+  filter: drop-shadow(5px 5px 5px black);
+}
+
+.title{
+  position: relative;
+  -webkit-filter: drop-shadow(5px 5px 5px black);
+  filter: drop-shadow(5px 5px 5px black);
+  width: 0%;
+  height: 10%;
+  line-height: 60px;
+  letter-spacing: 10px;
+  font-size:190px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-family: title;
+}
+
+.ajuda{
+  position: relative;
+  text-shadow: 10px 10px black;
+  width: 0%;
+  height: 10%;
+  line-height: 60px;
+  letter-spacing: 10px;
+  font-size:100px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-family: title;
+}
+
+.instrument{
+  width: 100px;
+  height: 100px;
+  -webkit-filter: drop-shadow(5px 5px 5px black);
+  filter: drop-shadow(5px 5px 5px black);
+}

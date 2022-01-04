@@ -1,5 +1,4 @@
 function preload(){
-  bg = loadImage('images/background.jpg');
   col = color(36, 63, 141, 100);
 }
 
@@ -27,17 +26,18 @@ function windowResized() {
 
 
 function draw() {
-  background(bg);
-  
-  rectMode(CENTER);
-  strokeWeight(4);
-  stroke(col);
-  rect(windowWidth/2, windowHeight/2, windowWidth*0.60, windowHeight*0.60);
-  fill(0, 0, 255);
 }
 
 
 function sair(){
   window.location.href="index.html";
+}
+
+function clickHandler(element){
+  console.log(element);
+  if(element.className == "container"){
+    var video1 = document.getElementById('video1');
+    video1.play();
+  }
 }
 
