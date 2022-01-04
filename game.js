@@ -452,8 +452,6 @@ function doNote(){
 function reNote(){
   if(selecionado != null){
     note.push("RE");
-
-    console.log("Playing note: re on " + selecionado);
     notaselecionada.push(62);
     port.noteOn(0, 62, 127);
 
@@ -561,13 +559,15 @@ function do2Note(){
   }
 }
 
-function touchEnded(){
+function touchEnded(fxn){
   console.log("Ended5");
+  console.log(fxn);
  /* if(notaselecionada!=null){
   port.noteOff(0,notaselecionada,127);
   }*/
   for (let i=0;i<notaselecionada.length;i++){
     print("Nota selecionada: " + notaselecionada[i]);
     port.noteOff(0,notaselecionada[i],127);
+    notaselecionada.pop(notaselecionada[i]);
   }
 }
