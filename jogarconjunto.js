@@ -36,8 +36,26 @@ function setup() {
   
   let player1 = new MusicalNote('English Horn',100,100,0);
   let player2= new MusicalNote('Marimba',200,100,1);
-  player1.notes();
-  player2.notes();
+  //player1.notes();
+  player1.doButton.mousePressed(function() {doNote(1,60);});
+  player1.reButton.mousePressed(function() {doNote(1,62);});
+  player1.miButton.mousePressed(function() {doNote(1,64);});
+  player1.faButton.mousePressed(function() {doNote(1,65);});
+  player1.solButton.mousePressed(function() {doNote(1,67);});
+  player1.laButton.mousePressed(function() {doNote(1,69);});
+  player1.siButton.mousePressed(function() {doNote(1,71);});
+  player1.do2Button.mousePressed(function() {doNote(1,72);});
+ // player2.notes();
+
+  player2.doButton.mousePressed(function() {doNote(2,60);});
+  player2.reButton.mousePressed(function() {doNote(2,62);});
+  player2.miButton.mousePressed(function() {doNote(2,64);});
+  player2.faButton.mousePressed(function() {doNote(2,65);});
+  player2.solButton.mousePressed(function() {doNote(2,67);});
+  player2.laButton.mousePressed(function() {doNote(2,69);});
+  player2.siButton.mousePressed(function() {doNote(2,71);});
+  player2.do2Button.mousePressed(function() {doNote(2,72);});
+
  /* soloButton = createButton('Tocar a Solo');
   soloButton.position(windowWidth*0.75, windowHeight* 0.10);
   soloButton.addClass('button');
@@ -114,6 +132,11 @@ function setup() {
 */
 
 
+}
+
+function doNote(channel,nota){
+  notaselecionada=nota;
+  port.noteOn(channel, nota, 127);
 }
 
 function windowResized() {
