@@ -66,11 +66,6 @@ canvas {
   font-family: title;
 }
 
-.instrument{
-  width: 100px;
-  height: 100px;
-}
-
 .selectInstrument{
   position: relative;
   text-shadow: 10px 10px black;

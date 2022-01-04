@@ -50,6 +50,15 @@ function setup() {
   soloButton.mousePressed(switchButton);
   soloButton.touchStarted(switchButton);
 
+  okButton = createButton('Tocar');
+  okButton.position(windowWidth*0.75, windowHeight* 0.70);
+  okButton.addClass('button');
+  okButton.style('border', '1px solid #243F8D');
+  okButton.style('background-color', col);
+  okButton.hide();
+  okButton.mousePressed(tocarConjunto);
+  okButton.touchStarted(tocarConjunto);
+
 
   doButton = createButton('DÓ');
   doButton.position(windowWidth/10 - doButton.width*2,windowHeight*0.7);
@@ -236,6 +245,7 @@ function switchButton(){
   if(solo == 1){
     conjuntoButton.hide();
     soloButton.show();
+    okButton.hide();
     solo = 0;
     player_number = 3;
 
@@ -303,14 +313,7 @@ function highlightSelected(){
     line((width/10)*(3+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(3+coluna[1]), (height/5)*(2+linha[1]));
     line((width/10)*(4+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(4+coluna[1]), (height/5)*(2+linha[1]));
 
-   
-    okButton = createButton('Tocar');
-    okButton.position(windowWidth*0.75, windowHeight* 0.70);
-    okButton.addClass('button');
-    okButton.style('border', '1px solid #243F8D');
-    okButton.style('background-color', col);
-    okButton.mousePressed(tocarConjunto);
-    okButton.touchStarted(tocarConjunto);
+    okButton.show();
 
     noStroke();
     fill(195,104,0);
@@ -356,7 +359,7 @@ function tocarConjunto(){
 }
 /*******************************
  * 
- * ALTERAR O INSTUMENTO
+ * ALTERAR O INSTUMENTO 
  * 
  */
 function guitarra(){
