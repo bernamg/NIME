@@ -66,15 +66,19 @@ canvas {
   font-family: title;
 }
 
-.ajuda{
+.instrument{
+  width: 100px;
+  height: 100px;
+}
+
+.selectInstrument{
   position: relative;
-  -webkit-filter: drop-shadow(5px 5px 5px black);
-  filter: drop-shadow(5px 5px 5px black);
+  text-shadow: 10px 10px black;
   width: 0%;
   height: 10%;
-  line-height: 60px;
-  letter-spacing: 10px;
-  font-size:100px;
+  line-height: 40px;
+  letter-spacing: 5px;
+  font-size:30px;
   text-decoration: none;
   text-transform: uppercase;
   color: #FFFFFF;
