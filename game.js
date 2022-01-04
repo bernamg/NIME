@@ -560,12 +560,13 @@ function do2Note(){
 }
 
 function touchEnded(fxn){
+  tam = notaselecionada.length;
   console.log("Ended5");
   console.log(fxn);
  /* if(notaselecionada!=null){
   port.noteOff(0,notaselecionada,127);
   }*/
-  for (let i=0;i<notaselecionada.length;i++){
+  for (let i=0;i<tam;i++){
     print("Nota selecionada: " + notaselecionada[i]);
     port.noteOff(0,notaselecionada[i],127);
     notaselecionada.pop(notaselecionada[i]);
