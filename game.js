@@ -31,6 +31,8 @@ function setup() {
   JZZ.synth.Tiny.register('Web Audio');
   port = JZZ().openMidiOut();
 
+ 
+
   conjuntoButton = createButton('Tocar em Conjunto');
   conjuntoButton.position(windowWidth*0.75, windowHeight* 0.10);
   conjuntoButton.addClass('button');
@@ -217,6 +219,8 @@ function draw() {
   }
 }
 
+
+
 function switchButton(){
   last_instrument = "";
   selecionado = null;
@@ -234,9 +238,14 @@ function switchButton(){
     soloButton.show();
     solo = 0;
     player_number = 3;
+
+    let title = createElement('h', 'Selecione os Instrumentos');
+    title.addClass('selectInstrument')
+    title.position(windowWidth * 0.40 ,windowHeight* 0.03);
   }
   else{
     conjuntoButton.show();
+    okButton.hide();
     soloButton.hide();
     solo = 1;
     player_number = 1;
@@ -294,6 +303,15 @@ function highlightSelected(){
     line((width/10)*(3+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(3+coluna[1]), (height/5)*(2+linha[1]));
     line((width/10)*(4+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(4+coluna[1]), (height/5)*(2+linha[1]));
 
+   
+    okButton = createButton('Tocar');
+    okButton.position(windowWidth*0.75, windowHeight* 0.70);
+    okButton.addClass('button');
+    okButton.style('border', '1px solid #243F8D');
+    okButton.style('background-color', col);
+    okButton.mousePressed(tocarConjunto);
+    okButton.touchStarted(tocarConjunto);
+
     noStroke();
     fill(195,104,0);
     text(instrument_list[2], width/2, height*0.15);
@@ -332,6 +350,10 @@ function checkInstrument(){
   }
 }
 
+function tocarConjunto(){
+  localStorage.setItem('instrumentos',JSON.stringify(instrument_list));
+  window.location.href="conjunto.html";
+}
 /*******************************
  * 
  * ALTERAR O INSTUMENTO
@@ -446,8 +468,6 @@ function doNote(){
     }
   }
 }
-
-
 
 function reNote(){
   if(selecionado != null){
