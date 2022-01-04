@@ -2,7 +2,7 @@ let note = [];
 let count = 0;
 let i=98;
 let selecionado = null;
-let notaselecionada = null
+let notaselecionada = [];
 var port;
 let coluna=[];
 let linha=[];
@@ -436,7 +436,7 @@ function doNote(){
     note.push("DO");
 
     console.log("Playing note: do on " + selecionado);
-    notaselecionada=60;
+    notaselecionada.push(60);
     port.noteOn(0, 60, 127)
 
     if(instrument_list[0] == "Saxofone"){
@@ -454,7 +454,7 @@ function reNote(){
     note.push("RE");
 
     console.log("Playing note: re on " + selecionado);
-    notaselecionada=62;
+    notaselecionada.push(62);
     port.noteOn(0, 62, 127);
 
     if(instrument_list[0] == "Saxofone"){
@@ -563,7 +563,11 @@ function do2Note(){
 
 function touchEnded(){
   console.log("Ended5");
-  if(notaselecionada!=null){
+ /* if(notaselecionada!=null){
   port.noteOff(0,notaselecionada,127);
+  }*/
+  for (let i=0;i<notaselecionada.length;i++){
+    print("Nota selecionada: " + notaselecionada[i]);
+    port.noteOff(0,notaselecionada[i],127);
   }
 }
