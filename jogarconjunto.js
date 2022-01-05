@@ -45,8 +45,8 @@ function setup() {
   }
  
   
-  player1 = new MusicalNote('imagens/oboe.png',100,100,10,200,0);
-  player2= new MusicalNote('images/tuba.png',200,100,10,400,1);
+  player1 = new MusicalNote("player1", 'imagens/oboe.png',100,100,10,200,0);
+  player2= new MusicalNote("player2",'images/tuba.png',200,100,10,400,1);
 
   player1_drag = player1.notes();
   player1_drag.mousePressed(function(){ dragDiv(player1_drag)}).touchStarted(function(){ dragDiv(player1_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
