@@ -55,62 +55,87 @@ function setup() {
   player2_drag = player2.notes();
   player2_drag.mousePressed(function(){ dragDiv(player2_drag)}).touchStarted(function(){ dragDiv(player2_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
   player2_drag.style('transform', 'rotate(90deg)');
-  player2_drag.position(-600,700);
+  player2_drag.position(100,700);
 
   player1.doButton.mousePressed(function() {doNote(1,60);});
   player1.doButton.touchStarted(function() {doNote(1,60);});
+  player1.doButton.mouseReleased(function() {stopNote(1,60);});
+  player1.doButton.touchEnded(function() {stopNote(1,60);});
 
   player1.reButton.mousePressed(function() {doNote(1,62);});
-  player1.reButton.touchStarted(function() {doNote(1,60);});
+  player1.reButton.touchStarted(function() {doNote(1,62);});
+  player1.reButton.mouseReleased(function() {stopNote(1,62);});
+  player1.reButton.touchEnded(function() {stopNote(1,62);});
 
   player1.miButton.mousePressed(function() {doNote(1,64);});
-  player1.miButton.touchStarted(function() {doNote(1,60);});
+  player1.miButton.touchStarted(function() {doNote(1,64);});
+  player1.miButton.mouseReleased(function() {stopNote(1,64);});
+  player1.miButton.touchEnded(function() {stopNote(1,64);});
 
   player1.faButton.mousePressed(function() {doNote(1,65);});
-  player1.faButton.touchStarted(function() {doNote(1,60);});
+  player1.faButton.touchStarted(function() {doNote(1,65);});
+  player1.faButton.mouseReleased(function() {stopNote(1,65);});
+  player1.faButton.touchEnded(function() {stopNote(1,65);});
 
   player1.solButton.mousePressed(function() {doNote(1,67);});
-  player1.solButton.touchStarted(function() {doNote(1,60);});
+  player1.solButton.touchStarted(function() {doNote(1,67);});
+  player1.solButton.mouseReleased(function() {stopNote(1,67);});
+  player1.solButton.touchEnded(function() {stopNote(1,67);});
 
   player1.laButton.mousePressed(function() {doNote(1,69);});
-  player1.laButton.touchStarted(function() {doNote(1,60);});
+  player1.laButton.touchStarted(function() {doNote(1,69);});
+  player1.laButton.mouseReleased(function() {stopNote(1,69);});
+  player1.laButton.touchEnded(function() {stopNote(1,69);});
   
   player1.siButton.mousePressed(function() {doNote(1,71);});
-  player1.siButton.touchStarted(function() {doNote(1,60);});
+  player1.siButton.touchStarted(function() {doNote(1,71);});
+  player1.siButton.mouseReleased(function() {stopNote(1,71);});
+  player1.siButton.touchEnded(function() {stopNote(1,71);});
   
   player1.do2Button.mousePressed(function() {doNote(1,72);});
-  player1.do2Button.touchStarted(function() {doNote(1,60);});
+  player1.do2Button.touchStarted(function() {doNote(1,72);});
+  player1.do2Button.mouseReleased(function() {stopNote(1,72);});
+  player1.do2Button.touchEnded(function() {stopNote(1,72);});
 
+
+  //PLAYER 2
   player2.doButton.mousePressed(function() {doNote(2,60);});
   player2.doButton.touchStarted(function() {doNote(2,60);});
 
   player2.reButton.mousePressed(function() {doNote(2,62);});
-  player2.reButton.touchStarted(function() {doNote(2,60);});
+  player2.reButton.touchStarted(function() {doNote(2,62);});
 
   player2.miButton.mousePressed(function() {doNote(2,64);});
-  player2.miButton.touchStarted(function() {doNote(2,60);});
+  player2.miButton.touchStarted(function() {doNote(2,64);});
 
   player2.faButton.mousePressed(function() {doNote(2,65);});
-  player2.faButton.touchStarted(function() {doNote(2,60);});
+  player2.faButton.touchStarted(function() {doNote(2,65);});
 
   player2.solButton.mousePressed(function() {doNote(2,67);});
-  player2.solButton.touchStarted(function() {doNote(2,60);});
+  player2.solButton.touchStarted(function() {doNote(2,67);});
 
   player2.laButton.mousePressed(function() {doNote(2,69);});
-  player2.laButton.touchStarted(function() {doNote(2,60);});
+  player2.laButton.touchStarted(function() {doNote(2,69);});
   
   player2.siButton.mousePressed(function() {doNote(2,71);});
-  player2.siButton.touchStarted(function() {doNote(2,60);});
+  player2.siButton.touchStarted(function() {doNote(2,71);});
   
   player2.do2Button.mousePressed(function() {doNote(2,72);});
-  player2.do2Button.touchStarted(function() {doNote(2,60);});
+  player2.do2Button.touchStarted(function() {doNote(2,72);});
 
  
 }
 
 function doNote(channel,nota){
+  console.log("Tocando: c-> " + channel +" n-> " +nota);
   notaselecionada=nota;
   port.noteOn(channel, nota, 127);
+}
+
+function stopNote(channel, nota){
+  console.log("Ended5");
+  notaselecionada = nota;
+  port.noteOff(channel,nota,127);
 }
 
 function windowResized() {
@@ -144,9 +169,9 @@ function dragDiv(d){
   onsetY = currentDragDiv.height + offsetY;
 }
 
-function touchEnded(){
+/*function touchEnded(){
   console.log("Ended5");
   if(notaselecionada!=null){
   port.noteOff(0,notaselecionada,127);
   }
-}
+}*/
