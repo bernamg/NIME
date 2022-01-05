@@ -115,7 +115,7 @@ function draw() {
     note3.show3();
   }
   imageMode(CENTER);
-  playAnimation()
+  playAnimation();
 }
 
 //===============DEFINIR DIRECÃO DA ANIMACÃO===============//

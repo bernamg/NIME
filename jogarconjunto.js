@@ -13,6 +13,16 @@ let solo = 1;
 let player_number = 1;
 let shiftable = false;
 let notaselecionada;
+let player1;
+let player2;
+let player1_drag;
+let player2_drag;
+
+let dragging = false;
+let offsetX, offsetY, onsetX, onsetY;
+let canvasWidth, canvasHeight;
+let currentDragDiv;
+
 
 function preload(){
   bg = loadImage('images/background.jpg');
@@ -21,6 +31,7 @@ function preload(){
 }
 
 function setup() {
+  angleMode(DEGREES);
   createCanvas(windowWidth, windowHeight);
   windowResized();
   JZZ.synth.Tiny.register('Web Audio');
@@ -34,9 +45,18 @@ function setup() {
   }
  
   
-  let player1 = new MusicalNote('Oboe',100,100,0);
-  let player2= new MusicalNote('Marimba',200,100,1);
-  //player1.notes();
+  player1 = new MusicalNote('imagens/oboe.png',100,100,10,200,0);
+  player2= new MusicalNote('images/tuba.png',200,100,10,400,1);
+
+  player1_drag = player1.notes();
+  player1_drag.mousePressed(function(){ dragDiv(player1_drag)}).touchStarted(function(){ dragDiv(player1_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
+  player1_drag.position(400,550);
+
+  player2_drag = player2.notes();
+  player2_drag.mousePressed(function(){ dragDiv(player2_drag)}).touchStarted(function(){ dragDiv(player2_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
+  player2_drag.style('transform', 'rotate(90deg)');
+  player2_drag.position(-600,700);
+
   player1.doButton.mousePressed(function() {doNote(1,60);});
   player1.doButton.touchStarted(function() {doNote(1,60);});
 
@@ -60,31 +80,30 @@ function setup() {
   
   player1.do2Button.mousePressed(function() {doNote(1,72);});
   player1.do2Button.touchStarted(function() {doNote(1,60);});
- // player2.notes();
 
- player2.doButton.mousePressed(function() {doNote(2,60);});
- player2.doButton.touchStarted(function() {doNote(2,60);});
+  player2.doButton.mousePressed(function() {doNote(2,60);});
+  player2.doButton.touchStarted(function() {doNote(2,60);});
 
- player2.reButton.mousePressed(function() {doNote(2,62);});
- player2.reButton.touchStarted(function() {doNote(2,60);});
+  player2.reButton.mousePressed(function() {doNote(2,62);});
+  player2.reButton.touchStarted(function() {doNote(2,60);});
 
- player2.miButton.mousePressed(function() {doNote(2,64);});
- player2.miButton.touchStarted(function() {doNote(2,60);});
+  player2.miButton.mousePressed(function() {doNote(2,64);});
+  player2.miButton.touchStarted(function() {doNote(2,60);});
 
- player2.faButton.mousePressed(function() {doNote(2,65);});
- player2.faButton.touchStarted(function() {doNote(2,60);});
+  player2.faButton.mousePressed(function() {doNote(2,65);});
+  player2.faButton.touchStarted(function() {doNote(2,60);});
 
- player2.solButton.mousePressed(function() {doNote(2,67);});
- player2.solButton.touchStarted(function() {doNote(2,60);});
+  player2.solButton.mousePressed(function() {doNote(2,67);});
+  player2.solButton.touchStarted(function() {doNote(2,60);});
 
- player2.laButton.mousePressed(function() {doNote(2,69);});
- player2.laButton.touchStarted(function() {doNote(2,60);});
- 
- player2.siButton.mousePressed(function() {doNote(2,71);});
- player2.siButton.touchStarted(function() {doNote(2,60);});
- 
- player2.do2Button.mousePressed(function() {doNote(2,72);});
- player2.do2Button.touchStarted(function() {doNote(2,60);});
+  player2.laButton.mousePressed(function() {doNote(2,69);});
+  player2.laButton.touchStarted(function() {doNote(2,60);});
+  
+  player2.siButton.mousePressed(function() {doNote(2,71);});
+  player2.siButton.touchStarted(function() {doNote(2,60);});
+  
+  player2.do2Button.mousePressed(function() {doNote(2,72);});
+  player2.do2Button.touchStarted(function() {doNote(2,60);});
 
  
 }
@@ -101,9 +120,29 @@ function windowResized() {
 
 function draw() {
   background(bg);
-  
+
+  if(dragging){
+
+    newX = mouseX + offsetX;
+    newY = mouseY + offsetY;
+
+    currentDragDiv.position(newX, newY);
+  }
 }
 
+function dropDiv(){
+  dragging = false;
+  currentDragDiv = null;
+}
+
+function dragDiv(d){
+  currentDragDiv = d;
+  dragging = true;        
+  offsetX = currentDragDiv.x - mouseX;
+  offsetY = currentDragDiv.y - mouseY;
+  onsetX = currentDragDiv.width + offsetX;
+  onsetY = currentDragDiv.height + offsetY;
+}
 
 function touchEnded(){
   console.log("Ended5");
