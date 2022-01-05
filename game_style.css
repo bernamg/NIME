@@ -25,13 +25,8 @@ canvas {
   color: #FFFFFF;
   font-size: 20px;
   border-radius: 20px;
-  background-color: black;
   -webkit-filter: drop-shadow(5px 5px 5px black);
   filter: drop-shadow(5px 5px 5px black);
-}
-
-.button:active {
-  background-color: #fff;
 }
 
 .sair_button{
@@ -46,24 +41,33 @@ canvas {
   color: #FFFFFF;
   font-size: 20px;
   border-radius: 20px;
-  background-color: black;
+}
+
+.container{
+  width: 100vw;
+  background-color: transparent;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .note_button{
+  margin: 3px;
   position: relative;
-  width: 5%;
-  height: 10%;
-  line-height: 60px;
-  letter-spacing: 2px;
+  display: inline;
+  width: 4vw;
+  height: 4vw;
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
   color: #FFFFFF;
-  font-size: 16px;
+  font-size: 100%;
+  border: 1px solid #243F8D;
   border-radius: 50%;
-  background-color: black;
-  -webkit-filter: drop-shadow(5px 5px 5px black);
-  filter: drop-shadow(5px 5px 5px black);
+  background-color: rgba(36, 63, 141, 0.5);
+}
+
+.note_button:active{
+  transform: scale(1.1);
 }
 
 .title{

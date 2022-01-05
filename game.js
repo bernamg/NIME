@@ -18,6 +18,13 @@ let dirx = [];
 let solo = 1;
 let player_number = 1;
 let shiftable = false;
+let div;
+
+let dragging = false;
+let offsetX, offsetY, onsetX, onsetY;
+let canvasWidth, canvasHeight;
+let currentDragDiv;
+
 
 function preload(){
   bg = loadImage('images/background.jpg');
@@ -59,68 +66,39 @@ function setup() {
   okButton.mousePressed(tocarConjunto);
   okButton.touchStarted(tocarConjunto);
 
+  div = createDiv('<div class = "container"><button class = "note_button" id = "do" type="button">DÓ</button><button class = "note_button" id = "re" type="button">RÉ</button><button class = "note_button" id = "mi" type="button">MI</button><button class = "note_button" id = "fa" type="button">FÁ</button><button class = "note_button" id = "sol" type="button">SOL</button><button class = "note_button" id = "la" type="button">LÁ</button><button class = "note_button" id = "si" type="button">SI</button><button class = "note_button" id = "do2" type="button">DÓ</button></div>').mousePressed(dragDiv).touchStarted(dragDiv).mouseReleased(dropDiv).touchEnded(dropDiv);
+  div.position(20, 500);
 
-  doButton = createButton('DÓ');
-  doButton.position(windowWidth/10 - doButton.width*2,windowHeight*0.7);
-  doButton.addClass('note_button');
-  doButton.style('border', '1px solid #243F8D');
-  doButton.style('background-color', col);
+  let doButton = select('#do');
+  let reButton = select('#re');
+  let miButton = select('#mi');
+  let faButton = select('#fa');
+  let solButton = select('#sol');
+  let laButton = select('#la');
+  let siButton = select('#si');
+  let do2Button = select('#do2');
+
   doButton.mousePressed(doNote);
   doButton.touchStarted(doNote);
 
-  reButton = createButton('RÉ');
-  reButton.position(windowWidth/10,windowHeight*0.7);
-  reButton.addClass('note_button');
-  reButton.style('border', '1px solid #243F8D');
-  reButton.style('background-color', col);
   reButton.mousePressed(reNote);
   reButton.touchStarted(reNote);
 
-  miButton = createButton('MI');
-  miButton.position(windowWidth/10 + doButton.width*2,windowHeight*0.7);
-  miButton.addClass('note_button');
-  miButton.style('border', '1px solid #243F8D');
-  miButton.style('background-color', col);
   miButton.mousePressed(miNote);
   miButton.touchStarted(miNote);
 
-  faButton = createButton('FÁ');
-  faButton.position(windowWidth/10 + doButton.width*4,windowHeight*0.7);
-  faButton.addClass('note_button');
-  faButton.style('border', '1px solid #243F8D');
-  faButton.style('background-color', col);
   faButton.mousePressed(faNote);
   faButton.touchStarted(faNote);
 
-  solButton = createButton('SOL');
-  solButton.position(windowWidth/10 + doButton.width*6,windowHeight*0.7);
-  solButton.addClass('note_button');
-  solButton.style('border', '1px solid #243F8D');
-  solButton.style('background-color', col);
   solButton.mousePressed(solNote);
   solButton.touchStarted(solNote);
 
-  laButton = createButton('LÁ');
-  laButton.position(windowWidth/10 + doButton.width*8,windowHeight*0.7);
-  laButton.addClass('note_button');
-  laButton.style('border', '1px solid #243F8D');
-  laButton.style('background-color', col);
   laButton.mousePressed(laNote);
   laButton.touchStarted(laNote);
 
-  siButton = createButton('SI');
-  siButton.position(windowWidth/10 + doButton.width*10,windowHeight*0.7);
-  siButton.addClass('note_button');
-  siButton.style('border', '1px solid #243F8D');
-  siButton.style('background-color', col);
   siButton.mousePressed(siNote);
   siButton.touchStarted(siNote);
 
-  do2Button = createButton('DÓ');
-  do2Button.position(windowWidth/10 + doButton.width*12,windowHeight*0.7);
-  do2Button.addClass('note_button');
-  do2Button.style('border', '1px solid #243F8D');
-  do2Button.style('background-color', col);
   do2Button.mousePressed(do2Note);
   do2Button.touchStarted(do2Note);
 
@@ -226,9 +204,42 @@ function draw() {
   if(notex[-1]!=0 && notey[-1]!=0){
     animatedNote();
   }
+
+  if(dragging){
+
+    newX = mouseX + offsetX;
+
+    if ( newX > canvasWidth ) {
+        newX = canvasWidth - currentPostIt.width;
+    } 
+    if ( newX < 0 ) {
+        newX = 0;
+    }
+
+    newY = mouseY + offsetY;
+
+    if ( newY > canvasHeight ) {
+      newY = canvasHeight - currentPostIt.height;
+    } 
+    if ( newY < 0 ) {
+      newY = 0;
+    }
+
+    div.position(newX, newY);
+  }
 }
 
+function dropDiv(){
+  dragging = false;
+}
 
+function dragDiv(){
+  dragging = true;        
+  offsetX = div.x - mouseX;
+  offsetY = div.y - mouseY;
+  onsetX = div.width + offsetX;
+  onsetY = div.height + offsetY;
+}
 
 function switchButton(){
   last_instrument = "";
