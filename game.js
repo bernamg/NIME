@@ -16,9 +16,14 @@ let notex = [];
 let notey = [];
 let dirx = [];
 let solo = 1;
-let player_number = 1;
+let solo_player = true;
+let player_number = 0;
 let shiftable = false;
 let div;
+let familyDiv;
+let left_arrow;
+let right_arrow;
+let current_familia = "Sopro";
 
 let dragging = false;
 let offsetX, offsetY, onsetX, onsetY;
@@ -39,6 +44,16 @@ function setup() {
   port = JZZ().openMidiOut();
 
  
+  familyDiv = createDiv('<div class = "family_container"><button type="button" id="left"><img src="images/left_arrow.png" width="40" height="50"/></button><button class="button" type="button" id="familia">Sopro</button><button type="button" id="right"><img src="images/right_arrow.png" width="40" height="50"/></button></div>');
+  familyDiv.position(windowWidth*0.75, windowHeight* 0.30);
+
+  left_arrow = select('#left');
+  left_arrow.mousePressed(function(){ switchFamily(true)});
+  left_arrow.touchStarted(function(){ switchFamily(true)});
+
+  right_arrow = select('#right');
+  right_arrow.mousePressed(function(){ switchFamily(false)});
+  right_arrow.touchStarted(function(){ switchFamily(false)});
 
   conjuntoButton = createButton('Tocar em Conjunto');
   conjuntoButton.position(windowWidth*0.75, windowHeight* 0.10);
@@ -190,14 +205,14 @@ function draw() {
 		}
 	}
   
-  if(selecionado!=null && player_number==1){
+  if(selecionado!=null && solo_player==true){
     if(shiftable){
       shiftable = false;
       checkInstrument();
     }
     highlightSelected();
   }
-  else if(selecionado!=null && player_number==3){
+  else if(selecionado!=null && solo_player==false){
     highlightSelected();
   }
 
@@ -241,6 +256,32 @@ function dragDiv(){
   onsetY = div.height + offsetY;
 }
 
+function switchFamily(left){
+  if(left){
+    if(current_familia == "Sopro"){
+      current_familia = "Cordas";
+    }
+    else if(current_familia == "Cordas"){
+      current_familia = "Percursao";
+    }
+    else{
+      current_familia = "Sopro";
+    }
+  }
+  else{
+    if(current_familia == "Sopro"){
+      current_familia = "Percursao";
+    }
+    else if(current_familia == "Percursao"){
+      current_familia = "Cordas";
+    }
+    else{
+      current_familia = "Sopro";
+    }
+  }
+  document.getElementById('familia').innerText = current_familia;
+}
+
 function switchButton(){
   last_instrument = "";
   selecionado = null;
@@ -258,7 +299,7 @@ function switchButton(){
     soloButton.show();
     okButton.hide();
     solo = 0;
-    player_number = 3;
+    solo_player = false;
 
     let title = createElement('h', 'Selecione os Instrumentos');
     title.addClass('selectInstrument')
@@ -269,7 +310,8 @@ function switchButton(){
     okButton.hide();
     soloButton.hide();
     solo = 1;
-    player_number = 1;
+    solo_player = true;
+    player_number = 0;
   }
 }
 
@@ -297,7 +339,7 @@ function highlightSelected(){
   textFont(font);
   textAlign(CENTER, CENTER);
 
-  if(player_number==1){
+  if(solo_player){
     text(instrument_list[0], width/2, height*0.1);
   }
   else{
@@ -312,7 +354,7 @@ function highlightSelected(){
   line((width/10)*(3+coluna[0]), (height/5)*(1+linha[0]), (width/10)*(3+coluna[0]), (height/5)*(2+linha[0]));
   line((width/10)*(4+coluna[0]), (height/5)*(1+linha[0]), (width/10)*(4+coluna[0]), (height/5)*(2+linha[0]));
 
-  if(player_number == 3){
+  if(!solo_player){
 
     noStroke();
     fill(255,21,170);
@@ -324,7 +366,10 @@ function highlightSelected(){
     line((width/10)*(3+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(3+coluna[1]), (height/5)*(2+linha[1]));
     line((width/10)*(4+coluna[1]), (height/5)*(1+linha[1]), (width/10)*(4+coluna[1]), (height/5)*(2+linha[1]));
 
-    okButton.show();
+    if(instrument_list[1]!=null){
+      player_number = 2;
+      okButton.show();
+    }
 
     noStroke();
     fill(195,104,0);
@@ -335,11 +380,15 @@ function highlightSelected(){
     line((width/10)*(3+coluna[2]), (height/5)*(2+linha[2]),(width/10)*(4+coluna[2]), (height/5)*(2+linha[2]));
     line((width/10)*(3+coluna[2]), (height/5)*(1+linha[2]), (width/10)*(3+coluna[2]), (height/5)*(2+linha[2]));
     line((width/10)*(4+coluna[2]), (height/5)*(1+linha[2]), (width/10)*(4+coluna[2]), (height/5)*(2+linha[2]));
+  
+    if(instrument_list[2]!=null){
+      player_number = 3;
+    }
   }
 }
 
 function setHighlightPosition(c, l){
-  if(player_number==1){
+  if(solo_player){
     if(coluna[-1]!=c && linha[-1]!=l){
       coluna.push(c);
       linha.push(l);
@@ -366,6 +415,7 @@ function checkInstrument(){
 
 function tocarConjunto(){
   localStorage.setItem('instrumentos',JSON.stringify(instrument_list));
+  localStorage.setItem('player_number',JSON.stringify(player_number));
   window.location.href="conjunto.html";
 }
 /*******************************

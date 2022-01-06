@@ -15,11 +15,13 @@ let shiftable = false;
 let notaselecionada;
 let player1;
 let player2;
+let player3;
 let player1_drag;
 let player2_drag;
+let player3_drag;
 
 let dragging = false;
-let offsetX, offsetY, onsetX, onsetY;
+let offsetX, offsetY;
 let canvasWidth, canvasHeight;
 let currentDragDiv;
 
@@ -31,7 +33,6 @@ function preload(){
 }
 
 function setup() {
-  angleMode(DEGREES);
   createCanvas(windowWidth, windowHeight);
   windowResized();
   JZZ.synth.Tiny.register('Web Audio');
@@ -43,19 +44,26 @@ function setup() {
   for (let i=0;i<instrument_list.length;i++){
       print("Instrumentos: "+instrument_list[i]);
   }
+
+  angleMode(DEGREES);
+
+  player_number = JSON.parse(localStorage.player_number);
  
-  
   player1 = new MusicalNote("player1", 'imagens/oboe.png',100,100,10,200,0);
   player2= new MusicalNote("player2",'images/tuba.png',200,100,10,400,1);
 
+  push();
   player1_drag = player1.notes();
   player1_drag.mousePressed(function(){ dragDiv(player1_drag)}).touchStarted(function(){ dragDiv(player1_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
-  player1_drag.position(400,550);
+  player1_drag.position((windowWidth/3),550);
+  pop();
 
+  push();
   player2_drag = player2.notes();
   player2_drag.mousePressed(function(){ dragDiv(player2_drag)}).touchStarted(function(){ dragDiv(player2_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
   player2_drag.style('transform', 'rotate(90deg)');
-  player2_drag.position(100,700);
+  player2_drag.position(0,250);
+  pop();
 
   player1.doButton.mousePressed(function() {doNote(1,60);});
   player1.doButton.touchStarted(function() {doNote(1,60);});
@@ -123,7 +131,41 @@ function setup() {
   player2.do2Button.mousePressed(function() {doNote(2,72);});
   player2.do2Button.touchStarted(function() {doNote(2,72);});
 
- 
+  //PLAYER 3
+  if(player_number == 3){
+    player3 = new MusicalNote("player3",'images/tuba.png',300,100,10,400,1);
+    push();
+    player3_drag = player3.notes();
+    player3_drag.mousePressed(function(){ dragDiv(player3_drag)}).touchStarted(function(){ dragDiv(player3_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
+    player3_drag.style('transform', 'rotate(-90deg)');
+    player3_drag.position(900, 250);
+    pop();
+  
+    player3.doButton.mousePressed(function() {doNote(2,60);});
+    player3.doButton.touchStarted(function() {doNote(2,60);});
+
+    player3.reButton.mousePressed(function() {doNote(2,62);});
+    player3.reButton.touchStarted(function() {doNote(2,62);});
+
+    player3.miButton.mousePressed(function() {doNote(2,64);});
+    player3.miButton.touchStarted(function() {doNote(2,64);});
+
+    player3.faButton.mousePressed(function() {doNote(2,65);});
+    player3.faButton.touchStarted(function() {doNote(2,65);});
+
+    player3.solButton.mousePressed(function() {doNote(2,67);});
+    player3.solButton.touchStarted(function() {doNote(2,67);});
+
+    player3.laButton.mousePressed(function() {doNote(2,69);});
+    player3.laButton.touchStarted(function() {doNote(2,69);});
+    
+    player3.siButton.mousePressed(function() {doNote(2,71);});
+    player3.siButton.touchStarted(function() {doNote(2,71);});
+    
+    player3.do2Button.mousePressed(function() {doNote(2,72);});
+    player3.do2Button.touchStarted(function() {doNote(2,72);});
+  }
+  
 }
 
 function doNote(channel,nota){
@@ -146,8 +188,8 @@ function windowResized() {
 function draw() {
   background(bg);
 
-  if(dragging){
 
+  if(dragging){
     newX = mouseX + offsetX;
     newY = mouseY + offsetY;
 
@@ -165,8 +207,6 @@ function dragDiv(d){
   dragging = true;        
   offsetX = currentDragDiv.x - mouseX;
   offsetY = currentDragDiv.y - mouseY;
-  onsetX = currentDragDiv.width + offsetX;
-  onsetY = currentDragDiv.height + offsetY;
 }
 
 /*function touchEnded(){
