@@ -32,7 +32,7 @@ let currentDragDiv;
 
 //let sopro_names =['AltoSax', 'SopranoSax','BaritonoSax', 'Oboe', 'Fagote', 'Trompete', 'Trombone', 'Tuba'];
 let sopro =[[65,'AltoSax'],[64,'SopranoSax'] ,[67,'BaritonoSax'],[69,'Oboe'],[70,'Fagote'],[56,'Trompote'],[57,'Trombone'],[58,'Tuba']];
-//let cordas =
+let cordas = [[24,'Guitarra Acustica'],[27,'Guitarra Elétrica'],[40,'Violino'],[42,'Violoncelo'],[46,'Harpa'],[104,'Sitar'],[105,'Banjo'],[107,'Koto']];
 
 
 cenario_atual = sopro;
