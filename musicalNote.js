@@ -8,9 +8,9 @@ class MusicalNote{
       this.notex=notex;
       this.notey=notey;
       this.channel=channel;
-      JZZ.synth.Tiny.register('Web Audio');
-      port = JZZ().openMidiOut();
-      port.ch(channel).program(instrumento);
+      //JZZ.synth.Tiny.register('Web Audio');
+      //port = JZZ().openMidiOut();
+      //port.ch(channel).program(instrumento);
 
       this.div = createDiv('<div class = "container" id="container"><button class = "note_button" id = "'+this.player+'do" type="button">DÓ</button><button class = "note_button" id = "'+this.player+'re" type="button">RÉ</button><button class = "note_button" id = "'+this.player+'mi" type="button">MI</button><button class = "note_button" id = "'+this.player+'fa" type="button">FÁ</button><button class = "note_button" id = "'+this.player+'sol" type="button">SOL</button><button class = "note_button" id = "'+this.player+'la" type="button">LÁ</button><button class = "note_button" id =  "'+this.player+'si" type="button">SI</button><button class = "note_button" id = "'+this.player+'do2" type="button">DÓ</button></div>');
 
@@ -28,20 +28,6 @@ class MusicalNote{
   
   notes(){  
     return this.div;
-  }
-
-
-  //doNote(){
-      //  notaselecionada=60;
-    //    port.noteOn(this.channel, 60, 127);
-  //}
-    
-
-  touchEnded(){
-      console.log("Ended5");
-      if(notaselecionada!=null){
-      port.noteOff(this.channel,notaselecionada,127);
-      }
   }
 
   show(){
