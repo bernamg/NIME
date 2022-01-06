@@ -30,6 +30,12 @@ let offsetX, offsetY, onsetX, onsetY;
 let canvasWidth, canvasHeight;
 let currentDragDiv;
 
+//let sopro_names =['AltoSax', 'SopranoSax','BaritonoSax', 'Oboe', 'Fagote', 'Trompete', 'Trombone', 'Tuba'];
+let sopro =[[65,'AltoSax'],[64,'SopranoSax'] ,[67,'BaritonoSax'],[69,'Oboe'],[70,'Fagote'],[56,'Trompote'],[57,'Trombone'],[58,'Tuba']];
+//let cordas =
+
+
+cenario_atual = sopro;
 
 function preload(){
   bg = loadImage('images/background.jpg');
@@ -93,29 +99,45 @@ function setup() {
   let siButton = select('#si');
   let do2Button = select('#do2');
 
-  doButton.mousePressed(doNote);
-  doButton.touchStarted(doNote);
+  doButton.mousePressed(function(){doNote(0,60, selecionado);});
+  doButton.touchStarted(function(){doNote(0,60, selecionado);});
+  doButton.mouseReleased(function() {stopNote(0,60,);});
+  doButton.touchEnded(function() {stopNote(0,60);});
 
-  reButton.mousePressed(reNote);
-  reButton.touchStarted(reNote);
+  reButton.mousePressed(function(){doNote(0,62, selecionado);});
+  reButton.touchStarted(function(){doNote(0,62, selecionado);});
+  reButton.mouseReleased(function() {stopNote(0,62);});
+  reButton.touchEnded(function() {stopNote(0,62);});
 
-  miButton.mousePressed(miNote);
-  miButton.touchStarted(miNote);
+  miButton.mousePressed(function(){doNote(0,64, selecionado);});
+  miButton.touchStarted(function(){doNote(0,64, selecionado);});
+  miButton.mouseReleased(function() {stopNote(0,64,);});
+  miButton.touchEnded(function() {stopNote(0,64);});
 
-  faButton.mousePressed(faNote);
-  faButton.touchStarted(faNote);
+  faButton.mousePressed(function(){doNote(0,65, selecionado);});
+  faButton.touchStarted(function(){doNote(0,65, selecionado);});
+  faButton.mouseReleased(function() {stopNote(0,65,);});
+  faButton.touchEnded(function() {stopNote(0,65);});
 
-  solButton.mousePressed(solNote);
-  solButton.touchStarted(solNote);
+  solButton.mousePressed(function(){doNote(0,67, selecionado);});
+  solButton.touchStarted(function(){doNote(0,67, selecionado);});
+  solButton.mouseReleased(function() {stopNote(0,67,);});
+  solButton.touchEnded(function() {stopNote(0,67);});
 
-  laButton.mousePressed(laNote);
-  laButton.touchStarted(laNote);
+  laButton.mousePressed(function(){doNote(0,69, selecionado);});
+  laButton.touchStarted(function(){doNote(0,69, selecionado);});
+  laButton.mouseReleased(function() {stopNote(0,69,);});
+  laButton.touchEnded(function() {stopNote(0,69);});
 
-  siButton.mousePressed(siNote);
-  siButton.touchStarted(siNote);
+  siButton.mousePressed(function(){doNote(0,71, selecionado);});
+  siButton.touchStarted(function(){doNote(0,71, selecionado);});
+  siButton.mouseReleased(function() {stopNote(0,71,);});
+  siButton.touchEnded(function() {stopNote(0,71);});
 
-  do2Button.mousePressed(do2Note);
-  do2Button.touchStarted(do2Note);
+  do2Button.mousePressed(function(){doNote(0,72, selecionado);});
+  do2Button.touchStarted(function(){doNote(0,72, selecionado);});
+  do2Button.mouseReleased(function() {stopNote(0,72,);});
+  do2Button.touchEnded(function() {stopNote(0,72);});
 
   /****
    * INSTRUMENTOS
@@ -130,62 +152,64 @@ function setup() {
   button.touchStarted(guitarra);
 
 */
+
+ //Mudar nome das imagens para substituir com 
  
-  saxofoneI = createImg('images/saxofone-alto.png');
-  saxofoneI.position(windowWidth/3.1,windowHeight/4.9);
-  saxofoneI.size(60,120);
-  saxofoneI.addClass('instrument');
-  saxofoneI.mousePressed(AltoSax);
-  saxofoneI.touchStarted(AltoSax);
+  Instrument1 = createImg('images/'+ cenario_atual[0][0] + '.png');
+  Instrument1.position(windowWidth/3.1,windowHeight/4.9);
+  Instrument1.size(60,120);
+  Instrument1.addClass('instrument');
+  Instrument1.mousePressed(function(){ change_instrument(cenario_atual[0][0], cenario_atual[0][1],0,0);});
+  Instrument1.touchStarted(function(){ change_instrument(cenario_atual[0][0], cenario_atual[0][1],0,0);});
 
-  saxofoneSop = createImg('images/saxofone-soprano.png');
-  saxofoneSop.position(windowWidth/2.33,windowHeight/4.9);
-  saxofoneSop.size(60,120);
-  saxofoneSop.addClass('instrument');
-  saxofoneSop.mousePressed(SopranoSax);
-  saxofoneSop.touchStarted(SopranoSax);
+  Instrument2 = createImg('images/'+ cenario_atual[1][0] + '.png');
+  Instrument2.position(windowWidth/2.33,windowHeight/4.9);
+  Instrument2.size(60,120);
+  Instrument2.addClass('instrument');
+  Instrument2.mousePressed(function(){ change_instrument(cenario_atual[1][0], cenario_atual[1][1],1,0);});
+  Instrument2.touchStarted(function(){ change_instrument(cenario_atual[1][0], cenario_atual[1][1],1,0);});
 
-  saxofoneBar = createImg('images/saxofone-baritono.png');
-  saxofoneBar.position(windowWidth/1.94,windowHeight/4.9);
-  saxofoneBar.size(90,120);
-  saxofoneBar.addClass('instrument');
-  saxofoneBar.mousePressed(BaritonoSax);
-  saxofoneBar.touchStarted(BaritonoSax);
+  Instrument3 = createImg('images/'+ cenario_atual[2][0] + '.png');
+  Instrument3.position(windowWidth/1.94,windowHeight/4.9);
+  Instrument3.size(90,120);
+  Instrument3.addClass('instrument');
+  Instrument3.mousePressed(function(){ change_instrument(cenario_atual[2][0], cenario_atual[2][1],2,0);});
+  Instrument3.touchStarted(function(){ change_instrument(cenario_atual[2][0], cenario_atual[2][1],2,0);});
 
-  oboe = createImg('images/oboe.png');
-  oboe.position(windowWidth*0.62,windowHeight/4.9);
-  oboe.size(90,120);
-  oboe.addClass('instrument');
-  oboe.mousePressed(OboeI);
-  oboe.touchStarted(OboeI);
+  Instrument4 = createImg('images/'+ cenario_atual[3][0] + '.png');
+  Instrument4.position(windowWidth*0.62,windowHeight/4.9);
+  Instrument4.size(90,120);
+  Instrument4.addClass('instrument');
+  Instrument4.mousePressed(function(){ change_instrument(cenario_atual[3][0], cenario_atual[3][1],3,0);});
+  Instrument4.touchStarted(function(){ change_instrument(cenario_atual[3][0], cenario_atual[3][1],3,0);});
 
-  fagote = createImg('images/fagote.png');
-  fagote.position(windowWidth/3.1,windowHeight/2.47);
-  fagote.size(90,120);
-  fagote.addClass('instrument');
-  fagote.mousePressed(FagoteI);
-  fagote.touchStarted(FagoteI);
+  Instrument5 = createImg('images/'+ cenario_atual[4][0] + '.png');
+  Instrument5.position(windowWidth/3.1,windowHeight/2.47);
+  Instrument5.size(90,120);
+  Instrument5.addClass('instrument');
+  Instrument5.mousePressed(function(){ change_instrument(cenario_atual[4][0], cenario_atual[4][1],0,1);});
+  Instrument5.touchStarted(function(){ change_instrument(cenario_atual[4][0], cenario_atual[4][1],0,1);});
 
-  trompete = createImg('images/trompete.png');
-  trompete.position(windowWidth/2.4,windowHeight/2.47);
-  trompete.size(90,120);
-  trompete.addClass('instrument');
-  trompete.mousePressed(TrompeteI);
-  trompete.touchStarted(TrompeteI);
+  Instrument6 = createImg('images/'+ cenario_atual[5][0] + '.png');
+  Instrument6.position(windowWidth/2.4,windowHeight/2.47);
+  Instrument6.size(90,120);
+  Instrument6.addClass('instrument');
+  Instrument6.mousePressed(function(){ change_instrument(cenario_atual[5][0], cenario_atual[5][1],1,1);});
+  Instrument6.touchStarted(function(){ change_instrument(cenario_atual[5][0], cenario_atual[5][1],1,1);});
   
-  trombone = createImg('images/trombone.png');
-  trombone.position(windowWidth/1.94,windowHeight/2.47);
-  trombone.size(90,120);
-  trombone.addClass('instrument');
-  trombone.mousePressed(TromboneI);
-  trombone.touchStarted(TromboneI);
+  Instrument7 = createImg('images/'+ cenario_atual[6][0] + '.png');
+  Instrument7.position(windowWidth/1.94,windowHeight/2.47);
+  Instrument7.size(90,120);
+  Instrument7.addClass('instrument');
+  Instrument7.mousePressed(function(){ change_instrument(cenario_atual[6][0], cenario_atual[6][1],2,1);});
+  Instrument7.touchStarted(function(){ change_instrument(cenario_atual[6][0], cenario_atual[6][1],2,1);});
 
-  tuba = createImg('images/tuba.png');
-  tuba.position(windowWidth*0.62,windowHeight/2.47);
-  tuba.size(90,120);
-  tuba.addClass('instrument');
-  tuba.mousePressed(TubaI);
-  tuba.touchStarted(TubaI);
+  Instrument8 = createImg('images/'+ cenario_atual[7][0] + '.png');
+  Instrument8.position(windowWidth*0.62,windowHeight/2.47);
+  Instrument8.size(90,120);
+  Instrument8.addClass('instrument');
+  Instrument8.mousePressed(function(){ change_instrument(cenario_atual[7][0], cenario_atual[7][1],3,1);});
+  Instrument8.touchStarted(function(){ change_instrument(cenario_atual[7][0], cenario_atual[7][1],3,1);});
 }
 
 function windowResized() {
@@ -423,93 +447,42 @@ function tocarConjunto(){
  * ALTERAR O INSTUMENTO 
  * 
  */
-function guitarra(){
-  instrument_list[0] = "Guitarra";
-  console.log("Alterado para guitarra")
-  selecionado = 'Acoustic Guitar (nylon)';
+
+//TODO: CRIAR UM ARRAY PARA PASSAR O NOME DOS INSTRUMENTOS
+ function change_instrument(instrumento,name,x,y){
+  setHighlightPosition(x,y);
+  instrument_list.push(name);
+  //instrument_list_num.push(instrumento);
+
+  console.log("Alterado para: " + instrumento);
+  selecionado = instrumento;
   console.log(selecionado);
-  port.ch(0).program(selecionado);
+  port.ch(0).program(instrumento);
+
 }
 
-function AltoSax(instrumento){
-  setHighlightPosition(0,0);
+/***********************************
+*     
+* NOTAS           
+*                        
+*/
 
-  instrument_list.push("Saxofone");
-  
-  console.log("Alterado para saxofone");
-  selecionado = 65;
-  port.ch(0).program(selecionado);
+//Funçao que toca a nota do instrumento
+function doNote(channel,nota,instrumento){
+  console.log("Tocando: c-> " + channel +" n-> " +nota +" I: " +instrumento);
+  port.ch(channel).program(instrumento);
+  notaselecionada=nota;
+  port.noteOn(channel, nota, 127);
 }
 
-function SopranoSax(instrumento){
-  setHighlightPosition(1,0);
-
-  instrument_list.push("Saxofone Soprano");
-
-  console.log("Alterado para saxofone-soprano");
-  selecionado = 64;
-  port.ch(0).program(selecionado);
+//Funçao que para a nota qd o touch acaba
+function stopNote(channel, nota){
+  console.log("Ended5: " + "c: "+channel +" n: " + nota);
+  notaselecionada = nota;
+  port.noteOff(channel,nota,127);
 }
 
-function BaritonoSax(instrumento){
-  setHighlightPosition(2,0);
 
-  instrument_list.push("Saxofone Baritono");
-
-  console.log("Alterado para saxofone-baritono");
-  selecionado = 67;
-  port.ch(0).program(selecionado);
-}
-
-function OboeI(instrumento){
-  setHighlightPosition(3,0);
-
-  instrument_list.push("Oboe");
-
-  console.log("Alterado para Oboe");
-  selecionado = 69;
-  port.ch(0).program(selecionado);
-}
-
-function FagoteI(instrumento){
-  setHighlightPosition(0,1);
-
-  instrument_list.push("Fagote");
- 
-  console.log("Alterado para fagote");
-  selecionado = 70;
-  port.ch(0).program(selecionado);
-}
-
-function TrompeteI(instrumento){
-  setHighlightPosition(1,1);
-
-  instrument_list.push("Trompete");
-
-  console.log("Alterado para trompete");
-  selecionado = 56;
-  port.ch(0).program(selecionado);
-}
-
-function TromboneI(instrumento){
-  setHighlightPosition(2,1);
-
-  instrument_list.push("Trombone");
-
-  console.log("Alterado para trombone");
-  selecionado = 57;
-  port.ch(0).program(selecionado);
-}
-
-function TubaI(instrumento){
-  setHighlightPosition(3,1);
-
-  instrument_list.push("Tuba");
- 
-  console.log("Alterado para tuba");
-  selecionado = 58;
-  port.ch(0).program(selecionado);
-}
 
 
 /***********************************
@@ -517,6 +490,7 @@ function TubaI(instrumento){
 * NOTAS           
 *                        
 */
+/*
 function doNote(){
   if(selecionado != null){
     note.push("DO");
@@ -651,3 +625,4 @@ function touchEnded(){
   port.noteOff(0,notaselecionada,127);
   }
 }
+*/
