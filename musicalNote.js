@@ -33,4 +33,8 @@ class MusicalNote{
   show(){
       image(this.instrumento,this.x,this.y,100,100);
   }
+
+  setInstrument(instrumento){
+    this.instrumento = instrumento;
+  }
 }
