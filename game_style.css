@@ -99,8 +99,44 @@ canvas {
   background-color: rgba(195,104,0,0.5);
 }
 
-.note_button:active{
+.note_button_player1:active, .note_button_player2:active, .note_button_player3:active{
   transform: scale(1.1);
+}
+
+@keyframes player2ShowAnimation{
+  0% {
+    left: -500px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes player2HideAnimation{
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -500px;
+  }
+}
+
+@keyframes player3ShowAnimation{
+  0% {
+    left: 1300px;
+  }
+  100% {
+    left: 870;
+  }
+}
+
+@keyframes player3HideAnimation{
+  0% {
+    left: 870;
+  }
+  100% {
+    left: 1300px;
+  }
 }
 
 .title{
