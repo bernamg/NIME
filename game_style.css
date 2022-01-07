@@ -16,7 +16,7 @@ canvas {
 
 .button{
   position: relative;
-  width: 20%;
+  width: 20vw;
   height: 10%;
   line-height: 60px;
   letter-spacing: 2px;
