@@ -39,7 +39,7 @@ function setup() {
   //Titulo
   let title = createElement('h', 'NIME');
   title.addClass('title');
-  title.position(windowWidth * 0.355 ,windowHeight* 0.20);
+  title.position(windowWidth/2 - 190 ,windowHeight* 0.20);
   
   note1 = new Note();
   note2 = new Note();
@@ -56,7 +56,7 @@ function setup() {
   playButton.style('border', '1px solid #CF1D41');
   let col1 = color(207, 29, 65, 100);
   playButton.style('background-color', col1);
-  playButton.position(windowWidth*0.50 -playButton.width/2, windowHeight * 0.45);
+  playButton.position(windowWidth/2 - windowWidth*0.2, windowHeight * 0.45);
   playButton.center('horizontal');
   playButton.touchStarted(playMenu);
   //rato
