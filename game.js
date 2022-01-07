@@ -46,7 +46,7 @@ function setup() {
 
  
   familyDiv = createDiv('<div class = "family_container"><button type="button" id="left"><img src="images/left_arrow.png" width="40" height="50"/></button><button class="button" type="button" id="familia">Sopro</button><button type="button" id="right"><img src="images/right_arrow.png" width="40" height="50"/></button></div>');
-  familyDiv.position(windowWidth*0.5  - windowWidth*0.1, windowHeight* 0.25);
+  familyDiv.position(windowWidth*0.5  - windowWidth*0.1, windowHeight* 0.30);
 
   soproDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "sopro_container1" ><image src="images/'+sopro[0][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container2" ><image src="images/'+sopro[1][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container3" ><image src="images/'+sopro[2][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container4" ><image src="images/'+sopro[3][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container5" ><image src="images/'+sopro[4][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container6" ><image src="images/'+sopro[5][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container7" ><image src="images/'+sopro[6][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container8" ><image src="images/'+sopro[7][0]+'.png"/></div></div>');
   soproDiv.position((windowWidth/2) - ((((windowHeight*0.8)*0.21*4)+22.5)/2), windowHeight/2 - windowHeight*0.1);
@@ -68,7 +68,7 @@ function setup() {
   right_arrow.touchStarted(function(){ switchFamily(false)});
 
   conjuntoButton = createButton('Tocar em Conjunto');
-  conjuntoButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.10);
+  conjuntoButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.15);
   conjuntoButton.addClass('button');
   conjuntoButton.style('border', '1px solid #243F8D');
   conjuntoButton.style('background-color', col);
@@ -76,13 +76,21 @@ function setup() {
   conjuntoButton.touchStarted(switchButton);
 
   soloButton = createButton('Tocar a Solo');
-  soloButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.10);
+  soloButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.15);
   soloButton.addClass('button');
   soloButton.style('border', '1px solid #243F8D');
   soloButton.style('background-color', col);
   soloButton.hide();
   soloButton.mousePressed(switchButton);
   soloButton.touchStarted(switchButton);
+
+  sairButton = createButton('Sair');
+  sairButton.position(windowWidth*0.5 - windowWidth*0.025, windowHeight* 0.05);
+  sairButton.addClass('sair_button');
+  sairButton.style('border', '1px solid #243F8D');
+  sairButton.style('background-color', col);
+  sairButton.mousePressed(sair);
+  sairButton.touchStarted(sair);
 
   player1 = new MusicalNote("player1", instrument_list[0],100,100,10,200,1);
   player2= new MusicalNote("player2",instrument_list[1],200,100,10,400,2);
@@ -275,7 +283,7 @@ function draw() {
     textSize(40);
     textFont(font);
     textAlign(CENTER, CENTER);
-    text(instrument_list[0], width/2, 650 - 40);
+    text(instrument_list[0], width/2, 650 - 30);
   }
 
   if(instrument_list[1]!=null){
@@ -392,9 +400,11 @@ function switchButton(){
   else{
     conjuntoButton.show();
     soloButton.hide();
-    player2_drag.style('animation','player2HideAnimation 1s forwards');
-    player3_drag.style('animation','player3HideAnimation 1s forwards');
     solo_player = true;
+    player2_drag.style('animation','player2HideAnimation 1s forwards');
+    player2_drag.position(0,windowHeight/2 + 7.5);
+    player3_drag.style('animation','player3HideAnimation 1s forwards');
+    player3_drag.position(870, windowHeight/2 - 62);
     player_number = 0;
   }
 }
@@ -604,5 +614,9 @@ function stopNote(channel, nota){
   //console.log("Ended5: " + "c: "+channel +" n: " + nota);
   notaselecionada = nota;
   port.noteOff(channel,nota,127);
+}
+
+function sair(){
+  window.location.href="index.html";
 }
 
