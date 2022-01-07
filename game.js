@@ -10,11 +10,12 @@ let solo_player = true;
 let player_number = 0;
 let div;
 let familyDiv;
-let instrumentDiv;
+let soproDiv;
+let cordasDiv;
+let percursaoDiv;
 let left_arrow;
 let right_arrow;
 let current_familia = "Sopro";
-let tocarPressed = false;
 let Instrument_containers_all = [];
 let Instrument_containers_list = [];
 
@@ -46,8 +47,12 @@ function setup() {
   familyDiv = createDiv('<div class = "family_container"><button type="button" id="left"><img src="images/left_arrow.png" width="40" height="50"/></button><button class="button" type="button" id="familia">Sopro</button><button type="button" id="right"><img src="images/right_arrow.png" width="40" height="50"/></button></div>');
   familyDiv.position(windowWidth*0.75, windowHeight* 0.30);
 
-  instrumentDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "instrument_container1" ><image src="images/'+sopro[0][0]+'.png"/></div><div class = "instrument_container" id = "instrument_container2" ><image src="images/'+sopro[1][0]+'.png"/></div><div class = "instrument_container" id = "instrument_container3" ><image src="images/'+sopro[2][0]+'.png"/></div><div class = "instrument_container" id = "instrument_container4" ><image src="images/'+sopro[3][0]+'.png"/></div><div class = "instrument_container" id = "instrument_container5" ><image src="images/'+sopro[4][0]+'.png"/></div><div class = "instrument_container" id = "instrument_container6" ><image src="images/'+sopro[5][0]+'.png"/></div><div class = "instrument_container" id = "instrument_container7" ><image src="images/'+sopro[6][0]+'.png"/></div><div class = "instrument_container" id = "instrument_container8" ><image src="images/'+sopro[7][0]+'.png"/></div></div>');
-  instrumentDiv.position((windowWidth/2) - ((((windowHeight*0.8)*0.21*4)+22.5)/2), windowHeight/2 - windowHeight*0.1);
+  soproDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "sopro_container1" ><image src="images/'+sopro[0][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container2" ><image src="images/'+sopro[1][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container3" ><image src="images/'+sopro[2][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container4" ><image src="images/'+sopro[3][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container5" ><image src="images/'+sopro[4][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container6" ><image src="images/'+sopro[5][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container7" ><image src="images/'+sopro[6][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container8" ><image src="images/'+sopro[7][0]+'.png"/></div></div>');
+  soproDiv.position((windowWidth/2) - ((((windowHeight*0.8)*0.21*4)+22.5)/2), windowHeight/2 - windowHeight*0.1);
+
+  cordasDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "cordas_container1" ><image src="images/'+cordas[0][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container2" ><image src="images/'+cordas[1][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container3" ><image src="images/'+cordas[2][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container4" ><image src="images/'+cordas[3][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container5" ><image src="images/'+cordas[4][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container6" ><image src="images/'+cordas[5][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container7" ><image src="images/'+cordas[6][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container8" ><image src="images/'+cordas[7][0]+'.png"/></div></div>');
+  cordasDiv.position((windowWidth/2) - ((((windowHeight*0.8)*0.21*4)+22.5)/2), windowHeight/2 - windowHeight*0.1);
+  cordasDiv.hide();
 
   left_arrow = select('#left');
   left_arrow.mousePressed(function(){ switchFamily(true)});
@@ -73,15 +78,6 @@ function setup() {
   soloButton.hide();
   soloButton.mousePressed(switchButton);
   soloButton.touchStarted(switchButton);
-
-  okButton = createButton('Tocar');
-  okButton.position(windowWidth*0.75, windowHeight* 0.70);
-  okButton.addClass('button');
-  okButton.style('border', '1px solid #243F8D');
-  okButton.style('background-color', col);
-  okButton.hide();
-  okButton.mousePressed(tocarConjunto);
-  okButton.touchStarted(tocarConjunto);
 
   player1 = new MusicalNote("player1", instrument_list[0],100,100,10,200,1);
   player2= new MusicalNote("player2",instrument_list[1],200,100,10,400,2);
@@ -246,48 +242,7 @@ function setup() {
 
 */
 
- //Mudar nome das imagens para substituir com 
- 
- 
-  Instrument1 = select('#instrument_container1');
-  Instrument1.mousePressed(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
-  Instrument1.touchStarted(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
-  Instrument_containers_all.push(Instrument1);
-
-  Instrument2 = select('#instrument_container2');
-  Instrument2.mousePressed(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
-  Instrument2.touchStarted(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
-  Instrument_containers_all.push(Instrument2);
-
-  Instrument3 = select('#instrument_container3');
-  Instrument3.mousePressed(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
-  Instrument3.touchStarted(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
-  Instrument_containers_all.push(Instrument3);
-
-  Instrument4 = select('#instrument_container4');
-  Instrument4.mousePressed(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
-  Instrument4.touchStarted(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
-  Instrument_containers_all.push(Instrument4);
-
-  Instrument5 = select('#instrument_container5');
-  Instrument5.mousePressed(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
-  Instrument5.touchStarted(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
-  Instrument_containers_all.push(Instrument5);
-
-  Instrument6 = select('#instrument_container6');
-  Instrument6.mousePressed(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
-  Instrument6.touchStarted(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
-  Instrument_containers_all.push(Instrument6);
-
-  Instrument7 = select('#instrument_container7');
-  Instrument7.mousePressed(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
-  Instrument7.touchStarted(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
-  Instrument_containers_all.push(Instrument7);
-
-  Instrument8 = select('#instrument_container8');
-  Instrument8.mousePressed(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
-  Instrument8.touchStarted(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
-  Instrument_containers_all.push(Instrument8);
+  setInstrumentFamily();
 }
 
 function windowResized() {
@@ -311,7 +266,6 @@ function draw() {
   }
 
   if(instrument_list[0]!=null){
-    player1.setInstrument(instrument_list[0]);
     fill(105,138,13);
     textSize(40);
     textFont(font);
@@ -327,15 +281,15 @@ function draw() {
   }
 
   if(instrument_list[1]!=null){
-    player2.setInstrument(instrument_list[1]);
     fill(255,21,170);
     text(instrument_list[1], width/2, height*0.09);
+    player2_drag.show();
   }
 
   if(instrument_list[2]!=null){
-    player3.setInstrument(instrument_list[2]);
     fill(195,104,0);
     text(instrument_list[2], width/2, height*0.15);
+    player3_drag.show();
   }
   
   line(windowWidth/2,0,windowWidth/2,windowHeight);
@@ -356,43 +310,74 @@ function dragDiv(d){
 
 
 function switchFamily(left){
+  highlightSelected(0);
+  instrument_list = [];
+  Instrument_containers_all = [];
+  Instrument_containers_list = [];
+  player_number = 0;
   if(left){
     if(current_familia == "Sopro"){
       current_familia = "Cordas";
+      cenario_atual = cordas;
+      cordasDiv.show();
+      //percursaoDiv.hide();
+      soproDiv.hide();
     }
     else if(current_familia == "Cordas"){
       current_familia = "Percursao";
+      //cenario_atual = percursao;
+      //percursaoDiv.show();
+      cordasDiv.hide();
+      soproDiv.hide();
     }
     else{
       current_familia = "Sopro";
+      cenario_atual = sopro;
+      soproDiv.show();
+      cordasDiv.hide();
+      //percursaoDiv.hide();
     }
   }
   else{
     if(current_familia == "Sopro"){
       current_familia = "Percursao";
+      //cenario_atual = percursao;
+      //percursaoDiv.show();
+      cordasDiv.hide();
+      soproDiv.hide();
     }
     else if(current_familia == "Percursao"){
       current_familia = "Cordas";
+      cenario_atual = cordas;
+      cordasDiv.show();
+      //percursaoDiv.hide();
+      soproDiv.hide();
     }
     else{
       current_familia = "Sopro";
+      cenario_atual = sopro;
+      soproDiv.show();
+      cordasDiv.hide();
+      //percursaoDiv.hide();
     }
   }
+  setInstrumentFamily();
   document.getElementById('familia').innerText = current_familia;
 }
 
 function switchButton(){
+  highlightSelected(0);
   instrument_list = [];
   Instrument_containers_list = [];
-  highlightSelected(0);
   soloButton.position(windowWidth*0.75, windowHeight* 0.10);
   familyDiv.position(windowWidth*0.75, windowHeight* 0.30);
 
   //MODO CONJUNTO
   if(solo_player){
+    soloButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.10);
+    familyDiv.position(windowWidth*0.5  - windowWidth*0.1, windowHeight* 0.30);
     conjuntoButton.hide();
     soloButton.show();
-    okButton.hide();
     solo_player = false;
 
     let title = createElement('h', 'Selecione os Instrumentos');
@@ -402,12 +387,10 @@ function switchButton(){
   //MODO SOLO
   else{
     conjuntoButton.show();
-    okButton.hide();
     soloButton.hide();
     player2_drag.hide();
     player3_drag.hide();
     solo_player = true;
-    tocarPressed = false;
     player_number = 0;
   }
 }
@@ -431,43 +414,31 @@ function animatedNote(){
 }
 
 function highlightSelected(InstrumentNum){
+
   for(let i=0; i<cenario_atual.length; i++){
     Instrument_containers_all[i].style("border","3px solid black");
   }
 
-  if(instrument_list[0]!=null){
-    Instrument_containers_list[0].style("border","3px solid rgb(105,138,13)");
-  }
+  if(InstrumentNum!=0){
+    if(instrument_list[0]!=null){
+      Instrument_containers_list[0].style("border","3px solid rgb(105,138,13)");
+    }
 
-  if(!solo_player){
+    if(!solo_player){
 
-    if(instrument_list[1]!=null){
-      Instrument_containers_list[1].style("border","3px solid rgb(255,21,170)");
-      player_number = 2;
-      if(!tocarPressed){
-        okButton.show(); 
-      }
+      if(instrument_list[1]!=null){
+        Instrument_containers_list[1].style("border","3px solid rgb(255,21,170)");
+        player_number = 2;
 
-      if(instrument_list[2]!=null){
-        Instrument_containers_list[2].style("border","3px solid rgb(195,104,0)");
-        player_number = 3;
+        if(instrument_list[2]!=null){
+          Instrument_containers_list[2].style("border","3px solid rgb(195,104,0)");
+          player_number = 3;
+        }
       }
     }
   }
 }
 
-
-function tocarConjunto(){
-  player2_drag.show();
-  if(player_number == 3){
-    player3_drag.show();
-  }
-  tocarPressed = true;
-  soloButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.10);
-  console.log(familyDiv.width);
-  familyDiv.position(windowWidth*0.5  - windowWidth*0.1, windowHeight* 0.30);
-  okButton.hide();
-}
 /*******************************
  * 
  * ALTERAR O INSTUMENTO 
@@ -476,11 +447,12 @@ function tocarConjunto(){
 
 //TODO: CRIAR UM ARRAY PARA PASSAR O NOME DOS INSTRUMENTOS
  function change_instrument(InstrumentNum, instrumento,name,x,y){
-  if(!tocarPressed){
-    if(solo_player){
-      instrument_list.shift();
-      Instrument_containers_list.shift();
-    }
+  if(solo_player){
+    instrument_list.shift();
+    Instrument_containers_list.shift();
+  }
+
+  if(player_number!=3){
     instrument_list.push(name);
     Instrument_containers_list.push(InstrumentNum);
     //instrument_list_num.push(instrumento);
@@ -488,7 +460,82 @@ function tocarConjunto(){
     console.log("Alterado para: " + instrumento);
     port.ch(0).program(instrumento);
     highlightSelected(InstrumentNum);
+
+    player1.setInstrument(instrument_list[0]);
+    if(instrument_list[1]!=null){
+      player2.setInstrument(instrument_list[1]);
+      if(instrument_list[2]!=null){
+        player3.setInstrument(instrument_list[2]);
+      }
+    }
   }
+}
+
+function setInstrumentFamily(){
+
+  if(cenario_atual==sopro)
+    Instrument1 = select('#sopro_container1');
+  else
+    Instrument1 = select('#cordas_container1');
+  Instrument1.mousePressed(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
+  Instrument1.touchStarted(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
+  Instrument_containers_all.push(Instrument1);
+
+  if(cenario_atual==sopro)
+    Instrument2 = select('#sopro_container2');
+  else
+    Instrument2 = select('#cordas_container2');
+  Instrument2.mousePressed(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
+  Instrument2.touchStarted(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
+  Instrument_containers_all.push(Instrument2);
+
+  if(cenario_atual==sopro)
+    Instrument3 = select('#sopro_container3');
+  else
+    Instrument3 = select('#cordas_container3');
+  Instrument3.mousePressed(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
+  Instrument3.touchStarted(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
+  Instrument_containers_all.push(Instrument3);
+
+  if(cenario_atual==sopro)
+    Instrument4 = select('#sopro_container4');
+  else
+    Instrument4 = select('#cordas_container4');
+  Instrument4.mousePressed(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
+  Instrument4.touchStarted(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
+  Instrument_containers_all.push(Instrument4);
+
+  if(cenario_atual==sopro)
+    Instrument5 = select('#sopro_container5');
+  else
+    Instrument5 = select('#cordas_container5');
+  Instrument5.mousePressed(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
+  Instrument5.touchStarted(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
+  Instrument_containers_all.push(Instrument5);
+
+  if(cenario_atual==sopro)
+    Instrument6 = select('#sopro_container6');
+  else
+    Instrument6 = select('#cordas_container6');
+  Instrument6.mousePressed(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
+  Instrument6.touchStarted(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
+  Instrument_containers_all.push(Instrument6);
+
+  if(cenario_atual==sopro)
+    Instrument7 = select('#sopro_container7');
+  else
+    Instrument7 = select('#cordas_container7');
+  Instrument7.mousePressed(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
+  Instrument7.touchStarted(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
+  Instrument_containers_all.push(Instrument7);
+
+  if(cenario_atual==sopro)
+    Instrument8 = select('#sopro_container8');
+  else
+    Instrument8 = select('#cordas_container8');
+  Instrument8.mousePressed(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
+  Instrument8.touchStarted(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
+  Instrument_containers_all.push(Instrument8);
 }
 
 /***********************************
