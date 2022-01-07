@@ -39,13 +39,14 @@ function preload(){
 function setup() {
   createCanvas(windowWidth, windowHeight);
   windowResized();
+  angleMode(DEGREES);
 
   JZZ.synth.Tiny.register('Web Audio');
   port = JZZ().openMidiOut();
 
  
   familyDiv = createDiv('<div class = "family_container"><button type="button" id="left"><img src="images/left_arrow.png" width="40" height="50"/></button><button class="button" type="button" id="familia">Sopro</button><button type="button" id="right"><img src="images/right_arrow.png" width="40" height="50"/></button></div>');
-  familyDiv.position(windowWidth*0.75, windowHeight* 0.30);
+  familyDiv.position(windowWidth*0.5  - windowWidth*0.1, windowHeight* 0.25);
 
   soproDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "sopro_container1" ><image src="images/'+sopro[0][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container2" ><image src="images/'+sopro[1][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container3" ><image src="images/'+sopro[2][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container4" ><image src="images/'+sopro[3][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container5" ><image src="images/'+sopro[4][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container6" ><image src="images/'+sopro[5][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container7" ><image src="images/'+sopro[6][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container8" ><image src="images/'+sopro[7][0]+'.png"/></div></div>');
   soproDiv.position((windowWidth/2) - ((((windowHeight*0.8)*0.21*4)+22.5)/2), windowHeight/2 - windowHeight*0.1);
@@ -67,7 +68,7 @@ function setup() {
   right_arrow.touchStarted(function(){ switchFamily(false)});
 
   conjuntoButton = createButton('Tocar em Conjunto');
-  conjuntoButton.position(windowWidth*0.75, windowHeight* 0.10);
+  conjuntoButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.10);
   conjuntoButton.addClass('button');
   conjuntoButton.style('border', '1px solid #243F8D');
   conjuntoButton.style('background-color', col);
@@ -75,7 +76,7 @@ function setup() {
   conjuntoButton.touchStarted(switchButton);
 
   soloButton = createButton('Tocar a Solo');
-  soloButton.position(windowWidth*0.75, windowHeight* 0.10);
+  soloButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.10);
   soloButton.addClass('button');
   soloButton.style('border', '1px solid #243F8D');
   soloButton.style('background-color', col);
@@ -274,32 +275,31 @@ function draw() {
     textSize(40);
     textFont(font);
     textAlign(CENTER, CENTER);
-
-
-    if(solo_player){
-      text(instrument_list[0], width/2, height*0.1);
-    }
-    else{
-      text(instrument_list[0], width/2, height*0.03);
-    }
+    text(instrument_list[0], width/2, 650 - 40);
   }
 
   if(instrument_list[1]!=null){
+    push();
+    rotate(90);
     fill(255,21,170);
-    text(instrument_list[1], width/2, height*0.09);
+    text(instrument_list[1], windowHeight/2,-windowWidth/2 + ((((windowHeight*0.8)*0.21*4)+22.5)/2) + 40);
     player2_drag.show();
     player2_drag.style('animation','player2ShowAnimation 1s linear');
+    pop();
   }
 
   if(instrument_list[2]!=null){
+    push();
+    rotate(-90);
     fill(195,104,0);
-    text(instrument_list[2], width/2, height*0.15);
+    text(instrument_list[2], -windowHeight/2, windowWidth/2 + ((((windowHeight*0.8)*0.21*4)+22.5)/2) + 40);
     player3_drag.show();
     player3_drag.style('animation','player3ShowAnimation 1s linear');
+    pop();
   }
   
-  line(windowWidth/2,0,windowWidth/2,windowHeight);
-  line(0,windowHeight/2,windowWidth,windowHeight/2);
+  //line(windowWidth/2,0,windowWidth/2,windowHeight);
+  //line(0,windowHeight/2,windowWidth,windowHeight/2);
 }
 
 function dropDiv(){
@@ -375,20 +375,18 @@ function switchButton(){
   highlightSelected(0);
   instrument_list = [];
   Instrument_containers_list = [];
-  soloButton.position(windowWidth*0.75, windowHeight* 0.10);
-  familyDiv.position(windowWidth*0.75, windowHeight* 0.30);
 
   //MODO CONJUNTO
   if(solo_player){
-    soloButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.10);
-    familyDiv.position(windowWidth*0.5  - windowWidth*0.1, windowHeight* 0.30);
     conjuntoButton.hide();
     soloButton.show();
     solo_player = false;
 
+    /*
     let title = createElement('h', 'Selecione os Instrumentos');
     title.addClass('selectInstrument')
     title.position(windowWidth * 0.40 ,windowHeight* 0.03);
+    */
   }
   //MODO SOLO
   else{
