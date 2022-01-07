@@ -194,8 +194,8 @@ function setup() {
   //PLAYER 3
   player3.doButton.mousePressed(function() {doNote(3,60, player3.instrumento);});
   player3.doButton.touchStarted(function() {doNote(3,60, player3.instrumento);});
-  player3.do2Button.mouseReleased(function() {stopNote(3,60);});
-  player3.do2Button.touchEnded(function() {stopNote(3,60);});
+  player3.doButton.mouseReleased(function() {stopNote(3,60);});
+  player3.doButton.touchEnded(function() {stopNote(3,60);});
 
   player3.reButton.mousePressed(function() {doNote(3,62, player3.instrumento);});
   player3.reButton.touchStarted(function() {doNote(3,62, player3.instrumento);});
