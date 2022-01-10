@@ -24,7 +24,7 @@ let currentDragDiv;
 let cenario_check = [false,false,false];
 
 //let sopro_names =['AltoSax', 'SopranoSax','BaritonoSax', 'Oboe', 'Fagote', 'Trompete', 'Trombone', 'Tuba'];
-let sopro =[[65,'AltoSax'],[64,'SopranoSax'] ,[67,'BaritonoSax'],[69,'Oboe'],[70,'Fagote'],[56,'Trompote'],[57,'Trombone'],[58,'Tuba']];
+let sopro =[[65,'Saxofone Alto'],[64,'Saxofone Soprano'] ,[67,'Saxofone Baritono'],[69,'Oboe'],[70,'Fagote'],[56,'Trompote'],[57,'Trombone'],[58,'Tuba']];
 let cordas = [[24,'Guitarra Acustica'],[27,'Guitarra Elétrica'],[40,'Violino'],[42,'Violoncelo'],[46,'Harpa'],[104,'Sitar'],[105,'Banjo'],[107,'Koto']];
 let percursao = [[24,'Guitarra Acustica'],[27,'Guitarra Elétrica'],[40,'Violino'],[42,'Violoncelo'],[46,'Harpa'],[104,'Sitar'],[105,'Banjo'],[107,'Koto']];
 
