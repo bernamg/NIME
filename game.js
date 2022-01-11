@@ -117,7 +117,7 @@ function setup() {
 
   push();
   player3_drag = player3.notes();
-  player3_drag.touchMoved(function(){ dragDiv(player1_drag)}).touchEnded(dropDiv);
+  player3_drag.touchMoved(function(){ dragDiv(player3_drag)}).touchEnded(dropDiv);
   player3_drag.style('transform', 'rotate(-90deg)');
   player3_drag.position(870, windowHeight/2 - 62);
   player3_drag.hide();
