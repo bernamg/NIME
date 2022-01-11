@@ -7,7 +7,7 @@ let count = 0;
 let play_sound;
 let angle = 0;
 let direction = 0;
-
+let check=0;
 function preload(){
   
   bg = loadImage('images/background.jpg');
