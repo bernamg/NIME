@@ -60,12 +60,14 @@ function setup() {
   percursaoDiv.hide();
 
   left_arrow = select('#left');
-  left_arrow.mousePressed(function(){ switchFamily(true)});
-  left_arrow.touchStarted(function(){ switchFamily(true)});
+  left_arrow.touchStarted(function(){ switchFamily(true);
+  //left_arrow.mousePressed(function(){ switchFamily(true)});
+  print("touchstarted linha 65")});
 
   right_arrow = select('#right');
-  right_arrow.mousePressed(function(){ switchFamily(false)});
-  right_arrow.touchStarted(function(){ switchFamily(false)});
+  right_arrow.touchStarted(function(){ switchFamily(false);
+  //right_arrow.mousePressed(function(){ switchFamily(false)});
+  print("touchstarted linha 70");});
 
   conjuntoButton = createButton('Tocar em Conjunto');
   conjuntoButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.15);
@@ -101,13 +103,13 @@ function setup() {
 
   push();
   player1_drag = player1.notes();
-  //player1_drag.mousePressed(function(){ dragDiv(player1_drag)}).touchStarted(function(){ dragDiv(player1_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
+  player1_drag.touchMoved(function(){ dragDiv(player1_drag)}).touchEnded(dropDiv);
   player1_drag.position(windowWidth/2 - (((windowWidth*0.035*8)+46)/2),650);
   pop();
 
   push();
   player2_drag = player2.notes();
-  //player2_drag.mousePressed(function(){ dragDiv(player2_drag)}).touchStarted(function(){ dragDiv(player2_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
+  player2_drag.touchMoved(function(){ dragDiv(player2_drag)}).touchEnded(dropDiv);
   player2_drag.style('transform', 'rotate(90deg)');
   player2_drag.position(0,windowHeight/2 + 7.5);
   player2_drag.hide();
@@ -115,133 +117,133 @@ function setup() {
 
   push();
   player3_drag = player3.notes();
-  //player3_drag.mousePressed(function(){ dragDiv(player3_drag)}).touchStarted(function(){ dragDiv(player3_drag)}).mouseReleased(dropDiv).touchEnded(dropDiv);
+  player3_drag.touchMoved(function(){ dragDiv(player1_drag)}).touchEnded(dropDiv);
   player3_drag.style('transform', 'rotate(-90deg)');
   player3_drag.position(870, windowHeight/2 - 62);
   player3_drag.hide();
   pop();
 
-  player1.doButton.mousePressed(function() {doNote(1,60,player1.instrumento);});
+  //player1.doButton.mousePressed(function() {doNote(1,60,player1.instrumento);});
   player1.doButton.touchStarted(function() {doNote(1,60,player1.instrumento);});
-  player1.doButton.mouseReleased(function() {stopNote(1,60,);});
+ // player1.doButton.mouseReleased(function() {stopNote(1,60,);});
   player1.doButton.touchEnded(function() {stopNote(1,60);});
 
-  player1.reButton.mousePressed(function() {doNote(1,62,player1.instrumento);});
+  //player1.reButton.mousePressed(function() {doNote(1,62,player1.instrumento);});
   player1.reButton.touchStarted(function() {doNote(1,62,player1.instrumento);});
-  player1.reButton.mouseReleased(function() {stopNote(1,62);});
+ // player1.reButton.mouseReleased(function() {stopNote(1,62);});
   player1.reButton.touchEnded(function() {stopNote(1,62);});
 
-  player1.miButton.mousePressed(function() {doNote(1,64,player1.instrumento);});
+  //player1.miButton.mousePressed(function() {doNote(1,64,player1.instrumento);});
   player1.miButton.touchStarted(function() {doNote(1,64,player1.instrumento);});
-  player1.miButton.mouseReleased(function() {stopNote(1,64);});
+  //player1.miButton.mouseReleased(function() {stopNote(1,64);});
   player1.miButton.touchEnded(function() {stopNote(1,64);});
 
-  player1.faButton.mousePressed(function() {doNote(1,65,player1.instrumento);});
+  //player1.faButton.mousePressed(function() {doNote(1,65,player1.instrumento);});
   player1.faButton.touchStarted(function() {doNote(1,65,player1.instrumento);});
-  player1.faButton.mouseReleased(function() {stopNote(1,65);});
+ // player1.faButton.mouseReleased(function() {stopNote(1,65);});
   player1.faButton.touchEnded(function() {stopNote(1,65);});
 
-  player1.solButton.mousePressed(function() {doNote(1,67,player1.instrumento);});
+  //player1.solButton.mousePressed(function() {doNote(1,67,player1.instrumento);});
   player1.solButton.touchStarted(function() {doNote(1,67,player1.instrumento);});
-  player1.solButton.mouseReleased(function() {stopNote(1,67);});
+ // player1.solButton.mouseReleased(function() {stopNote(1,67);});
   player1.solButton.touchEnded(function() {stopNote(1,67);});
 
-  player1.laButton.mousePressed(function() {doNote(1,69,player1.instrumento);});
+ // player1.laButton.mousePressed(function() {doNote(1,69,player1.instrumento);});
   player1.laButton.touchStarted(function() {doNote(1,69,player1.instrumento);});
-  player1.laButton.mouseReleased(function() {stopNote(1,69);});
+ // player1.laButton.mouseReleased(function() {stopNote(1,69);});
   player1.laButton.touchEnded(function() {stopNote(1,69);});
   
-  player1.siButton.mousePressed(function() {doNote(1,71,player1.instrumento);});
+  //player1.siButton.mousePressed(function() {doNote(1,71,player1.instrumento);});
   player1.siButton.touchStarted(function() {doNote(1,71,player1.instrumento);});
-  player1.siButton.mouseReleased(function() {stopNote(1,71);});
+ // player1.siButton.mouseReleased(function() {stopNote(1,71);});
   player1.siButton.touchEnded(function() {stopNote(1,71);});
   
-  player1.do2Button.mousePressed(function() {doNote(1,72,player1.instrumento);});
+ // player1.do2Button.mousePressed(function() {doNote(1,72,player1.instrumento);});
   player1.do2Button.touchStarted(function() {doNote(1,72,player1.instrumento);});
-  player1.do2Button.mouseReleased(function() {stopNote(1,72);});
+ // player1.do2Button.mouseReleased(function() {stopNote(1,72);});
   player1.do2Button.touchEnded(function() {stopNote(1,72);});
 
 
   //PLAYER 2
-  player2.doButton.mousePressed(function() {doNote(2,60,player2.instrumento);});
+ // player2.doButton.mousePressed(function() {doNote(2,60,player2.instrumento);});
   player2.doButton.touchStarted(function() {doNote(2,60,player2.instrumento);});
-  player2.doButton.mouseReleased(function() {stopNote(2,60);});
+  //player2.doButton.mouseReleased(function() {stopNote(2,60);});
   player2.doButton.touchEnded(function() {stopNote(2,60);});
 
-  player2.reButton.mousePressed(function() {doNote(2,62,player2.instrumento);});
+ // player2.reButton.mousePressed(function() {doNote(2,62,player2.instrumento);});
   player2.reButton.touchStarted(function() {doNote(2,62,player2.instrumento);});
-  player2.reButton.mouseReleased(function() {stopNote(2,62);});
+ // player2.reButton.mouseReleased(function() {stopNote(2,62);});
   player2.reButton.touchEnded(function() {stopNote(2,62);});
 
-  player2.miButton.mousePressed(function() {doNote(2,64,player2.instrumento);});
+ // player2.miButton.mousePressed(function() {doNote(2,64,player2.instrumento);});
   player2.miButton.touchStarted(function() {doNote(2,64,player2.instrumento);});
-  player2.miButton.mouseReleased(function() {stopNote(2,64);});
+ // player2.miButton.mouseReleased(function() {stopNote(2,64);});
   player2.miButton.touchEnded(function() {stopNote(2,64);});
 
-  player2.faButton.mousePressed(function() {doNote(2,65,player2.instrumento);});
+ // player2.faButton.mousePressed(function() {doNote(2,65,player2.instrumento);});
   player2.faButton.touchStarted(function() {doNote(2,65,player2.instrumento);});
-  player2.faButton.mouseReleased(function() {stopNote(2,65);});
+ // player2.faButton.mouseReleased(function() {stopNote(2,65);});
   player2.faButton.touchEnded(function() {stopNote(2,65);});
 
-  player2.solButton.mousePressed(function() {doNote(2,67,player2.instrumento);});
+ // player2.solButton.mousePressed(function() {doNote(2,67,player2.instrumento);});
   player2.solButton.touchStarted(function() {doNote(2,67,player2.instrumento);});
-  player2.solButton.mouseReleased(function() {stopNote(2,67);});
+ // player2.solButton.mouseReleased(function() {stopNote(2,67);});
   player2.solButton.touchEnded(function() {stopNote(2,67);});
 
-  player2.laButton.mousePressed(function() {doNote(2,69,player2.instrumento);});
+ // player2.laButton.mousePressed(function() {doNote(2,69,player2.instrumento);});
   player2.laButton.touchStarted(function() {doNote(2,69,player2.instrumento);});
-  player2.laButton.mouseReleased(function() {stopNote(2,69);});
+ // player2.laButton.mouseReleased(function() {stopNote(2,69);});
   player2.laButton.touchEnded(function() {stopNote(2,69);});
   
-  player2.siButton.mousePressed(function() {doNote(2,71,player2.instrumento);});
+ // player2.siButton.mousePressed(function() {doNote(2,71,player2.instrumento);});
   player2.siButton.touchStarted(function() {doNote(2,71,player2.instrumento);});
-  player2.siButton.mouseReleased(function() {stopNote(2,71);});
+ // player2.siButton.mouseReleased(function() {stopNote(2,71);});
   player2.siButton.touchEnded(function() {stopNote(2,71);});
   
-  player2.do2Button.mousePressed(function() {doNote(2,72,player2.instrumento);});
+ // player2.do2Button.mousePressed(function() {doNote(2,72,player2.instrumento);});
   player2.do2Button.touchStarted(function() {doNote(2,72,player2.instrumento);});
-  player2.do2Button.mouseReleased(function() {stopNote(2,72);});
+ // player2.do2Button.mouseReleased(function() {stopNote(2,72);});
   player2.do2Button.touchEnded(function() {stopNote(2,72);});
 
   //PLAYER 3
-  player3.doButton.mousePressed(function() {doNote(3,60, player3.instrumento);});
+ // player3.doButton.mousePressed(function() {doNote(3,60, player3.instrumento);});
   player3.doButton.touchStarted(function() {doNote(3,60, player3.instrumento);});
-  player3.doButton.mouseReleased(function() {stopNote(3,60);});
+ // player3.doButton.mouseReleased(function() {stopNote(3,60);});
   player3.doButton.touchEnded(function() {stopNote(3,60);});
 
-  player3.reButton.mousePressed(function() {doNote(3,62, player3.instrumento);});
+ // player3.reButton.mousePressed(function() {doNote(3,62, player3.instrumento);});
   player3.reButton.touchStarted(function() {doNote(3,62, player3.instrumento);});
-  player3.reButton.mouseReleased(function() {stopNote(3,62);});
+ // player3.reButton.mouseReleased(function() {stopNote(3,62);});
   player3.reButton.touchEnded(function() {stopNote(3,62);});
 
-  player3.miButton.mousePressed(function() {doNote(3,64, player3.instrumento);});
+ // player3.miButton.mousePressed(function() {doNote(3,64, player3.instrumento);});
   player3.miButton.touchStarted(function() {doNote(3,64, player3.instrumento);});
-  player3.miButton.mouseReleased(function() {stopNote(3,64);});
+ // player3.miButton.mouseReleased(function() {stopNote(3,64);});
   player3.miButton.touchEnded(function() {stopNote(3,64);});
 
-  player3.faButton.mousePressed(function() {doNote(3,65, player3.instrumento);});
+ // player3.faButton.mousePressed(function() {doNote(3,65, player3.instrumento);});
   player3.faButton.touchStarted(function() {doNote(3,65, player3.instrumento);});
-  player3.faButton.mouseReleased(function() {stopNote(3,65);});
+ // player3.faButton.mouseReleased(function() {stopNote(3,65);});
   player3.faButton.touchEnded(function() {stopNote(3,65);});
 
-  player3.solButton.mousePressed(function() {doNote(3,67, player3.instrumento);});
+  //player3.solButton.mousePressed(function() {doNote(3,67, player3.instrumento);});
   player3.solButton.touchStarted(function() {doNote(3,67, player3.instrumento);});
-  player3.solButton.mouseReleased(function() {stopNote(3,67);});
+ // player3.solButton.mouseReleased(function() {stopNote(3,67);});
   player3.solButton.touchEnded(function() {stopNote(3,67);});
 
-  player3.laButton.mousePressed(function() {doNote(3,69, player3.instrumento);});
+  //player3.laButton.mousePressed(function() {doNote(3,69, player3.instrumento);});
   player3.laButton.touchStarted(function() {doNote(3,69, player3.instrumento);});
-  player3.laButton.mouseReleased(function() {stopNote(3,69);});
+  //player3.laButton.mouseReleased(function() {stopNote(3,69);});
   player3.laButton.touchEnded(function() {stopNote(3,69);});
   
-  player3.siButton.mousePressed(function() {doNote(3,71, player3.instrumento);});
+  //player3.siButton.mousePressed(function() {doNote(3,71, player3.instrumento);});
   player3.siButton.touchStarted(function() {doNote(3,71, player3.instrumento);});
-  player3.siButton.mouseReleased(function() {stopNote(3,71);});
+  //player3.siButton.mouseReleased(function() {stopNote(3,71);});
   player3.siButton.touchEnded(function() {stopNote(3,71);});
   
-  player3.do2Button.mousePressed(function() {doNote(3,72, player3.instrumento);});
+  //player3.do2Button.mousePressed(function() {doNote(3,72, player3.instrumento);});
   player3.do2Button.touchStarted(function() {doNote(3,72, player3.instrumento);});
-  player3.do2Button.mouseReleased(function() {stopNote(3,72);});
+ // player3.do2Button.mouseReleased(function() {stopNote(3,72);});
   player3.do2Button.touchEnded(function() {stopNote(3,72);});
 
   /****
@@ -339,6 +341,7 @@ function switchFamily(left){
       cordasDiv.show();
       percursaoDiv.hide();
       soproDiv.hide();
+      print("esquerda sopro -> cordas");
     }
     else if(current_familia == "Cordas"){
       current_familia = "Percursao";
@@ -346,6 +349,7 @@ function switchFamily(left){
       percursaoDiv.show();
       cordasDiv.hide();
       soproDiv.hide();
+      print("esquerda cordas -> percurssão");
     }
     else{
       current_familia = "Sopro";
@@ -353,6 +357,7 @@ function switchFamily(left){
       soproDiv.show();
       cordasDiv.hide();
       percursaoDiv.hide();
+      print("esquerda percussão -> sopro");
     }
   }
   else{
@@ -565,32 +570,32 @@ function setInstrumentFamily(){
   Instrument_containers_all.push(Instrument8);
   
   if((cenario_atual==sopro && !cenario_check[0]) || (cenario_atual==percursao && !cenario_check[1]) || (cenario_atual==cordas && !cenario_check[2])){
-    Instrument1.mousePressed(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
+    //Instrument1.mousePressed(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
     Instrument1.touchStarted(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
-    Instrument1.touchEnded();
 
-    Instrument2.mousePressed(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
+
+    //Instrument2.mousePressed(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
     Instrument2.touchStarted(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
-    Instrument2.touchEnded();
 
-    Instrument3.mousePressed(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
+
+    //Instrument3.mousePressed(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
     Instrument3.touchStarted(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
-    Instrument3.touchEnded();
 
-    Instrument4.mousePressed(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
+
+   // Instrument4.mousePressed(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
     Instrument4.touchStarted(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
-    Instrument4.touchEnded();
+    
 
-    Instrument5.mousePressed(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
+   // Instrument5.mousePressed(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
     Instrument5.touchStarted(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
 
-    Instrument6.mousePressed(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
+   // Instrument6.mousePressed(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
     Instrument6.touchStarted(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
 
-    Instrument7.mousePressed(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
+    //Instrument7.mousePressed(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
     Instrument7.touchStarted(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
 
-    Instrument8.mousePressed(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
+   // Instrument8.mousePressed(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
     Instrument8.touchStarted(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
   }
 
@@ -626,4 +631,6 @@ function stopNote(channel, nota){
 function sair(){
   window.location.href="index.html";
 }
+
+
 
