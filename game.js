@@ -74,6 +74,8 @@ function setup() {
   conjuntoButton.style('background-color', col);
   conjuntoButton.mousePressed(switchButton);
   conjuntoButton.touchStarted(switchButton);
+  conjuntoButton.touchEnded();
+
 
   soloButton = createButton('Tocar a Solo');
   soloButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.15);
@@ -83,6 +85,7 @@ function setup() {
   soloButton.hide();
   soloButton.mousePressed(switchButton);
   soloButton.touchStarted(switchButton);
+  soloButton.touchEnded();
 
   sairButton = createButton('Sair');
   sairButton.position(windowWidth*0.5 - windowWidth*0.025, windowHeight* 0.05);
