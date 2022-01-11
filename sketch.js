@@ -6,7 +6,6 @@ let note3_check = 0;
 let count = 0;
 let play_sound;
 let angle = 0;
-let check = 0;
 let direction = 0;
 
 function preload(){
@@ -37,7 +36,7 @@ function setup() {
   play_sound = loadSound('sounds/guitar');
 
   //Titulo
-  let title = createElement('h', 'NIME v3');
+  let title = createElement('h', 'NIME');
   title.addClass('title');
   title.position(windowWidth/2 - 190 ,windowHeight* 0.20);
   
