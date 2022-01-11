@@ -1,18 +1,18 @@
 class MusicalNote{
     
   constructor(player, instrumento,x,y,notex,notey,channel){
-    this.player = player;  
-    this.instrumento = instrumento;
+      this.player = player;  
+      this.instrumento = instrumento;
       this.x=x;
       this.y=y;
       this.notex=notex;
       this.notey=notey;
       this.channel=channel;
-      //JZZ.synth.Tiny.register('Web Audio');
-      //port = JZZ().openMidiOut();
-      //port.ch(channel).program(instrumento);
+      JZZ.synth.Tiny.register('Web Audio');
+      port = JZZ().openMidiOut();
+      port.ch(channel).program(instrumento);
 
-      this.div = createDiv('<div class = "container" id="container"><button class = "note_button_'+this.player+'" id = "'+this.player+'do" type="button">DÓ</button><button class = "note_button_'+this.player+'" id = "'+this.player+'re" type="button">RÉ</button><button class = "note_button_'+this.player+'" id = "'+this.player+'mi" type="button">MI</button><button class = "note_button_'+this.player+'" id = "'+this.player+'fa" type="button">FÁ</button><button class = "note_button_'+this.player+'" id = "'+this.player+'sol" type="button">SOL</button><button class = "note_button_'+this.player+'" id = "'+this.player+'la" type="button">LÁ</button><button class = "note_button_'+this.player+'" id =  "'+this.player+'si" type="button">SI</button><button class = "note_button_'+this.player+'" id = "'+this.player+'do2" type="button">DÓ</button></div>');
+      this.div = createDiv('<div class = "container"><button class = "note_button" id = "'+this.player+'do" type="button">DÓ</button><button class = "note_button" id = "'+this.player+'re" type="button">RÉ</button><button class = "note_button" id = "'+this.player+'mi" type="button">MI</button><button class = "note_button" id = "'+this.player+'fa" type="button">FÁ</button><button class = "note_button" id = "'+this.player+'sol" type="button">SOL</button><button class = "note_button" id = "'+this.player+'la" type="button">LÁ</button><button class = "note_button" id =  "'+this.player+'si" type="button">SI</button><button class = "note_button" id = "'+this.player+'do2" type="button">DÓ</button></div>');
 
       this.doButton = select('#'+this.player+'do');
       this.reButton = select('#'+this.player+'re');
@@ -30,11 +30,21 @@ class MusicalNote{
     return this.div;
   }
 
-  show(){
-      image(this.instrumento,this.x,this.y,100,100);
+
+  //doNote(){
+      //  notaselecionada=60;
+    //    port.noteOn(this.channel, 60, 127);
+  //}
+    
+
+  touchEnded(){
+      console.log("Ended5");
+      if(notaselecionada!=null){
+      port.noteOff(this.channel,notaselecionada,127);
+      }
   }
 
-  setInstrument(instrumento){
-    this.instrumento = instrumento;
+  show(){
+      image(this.instrumento,this.x,this.y,100,100);
   }
 }

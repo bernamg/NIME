@@ -22,6 +22,8 @@ let dragging = false;
 let offsetX, offsetY;
 let currentDragDiv;
 let cenario_check = [false,false,false];
+let angle = 0;
+let direction = 0;
 
 //let sopro_names =['AltoSax', 'SopranoSax','BaritonoSax', 'Oboe', 'Fagote', 'Trompete', 'Trombone', 'Tuba'];
 let sopro =[[65,'Saxofone Alto'],[64,'Saxofone Soprano'] ,[67,'Saxofone Baritono'],[69,'Oboe'],[70,'Fagote'],[56,'Trompote'],[57,'Trombone'],[58,'Tuba']];
@@ -48,8 +50,9 @@ function setup() {
   familyDiv = createDiv('<div class = "family_container"><button type="button" id="left"><img src="images/left_arrow.png" width="40" height="50"/></button><button class="button" type="button" id="familia">Sopro</button><button type="button" id="right"><img src="images/right_arrow.png" width="40" height="50"/></button></div>');
   familyDiv.position(windowWidth*0.5  - windowWidth*0.1, windowHeight* 0.30);
 
-  soproDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "sopro_container1" ><image src="images/'+sopro[0][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container2" ><image src="images/'+sopro[1][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container3" ><image src="images/'+sopro[2][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container4" ><image src="images/'+sopro[3][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container5" ><image src="images/'+sopro[4][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container6" ><image src="images/'+sopro[5][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container7" ><image src="images/'+sopro[6][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container8" ><image src="images/'+sopro[7][0]+'.png"/></div></div>');
+  soproDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "sopro_container1" ><image id="sopro1" src="images/'+sopro[0][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container2" ><image src="images/'+sopro[1][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container3" ><image src="images/'+sopro[2][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container4" ><image src="images/'+sopro[3][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container5" ><image src="images/'+sopro[4][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container6" ><image src="images/'+sopro[5][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container7" ><image src="images/'+sopro[6][0]+'.png"/></div><div class = "instrument_container" id = "sopro_container8" ><image src="images/'+sopro[7][0]+'.png"/></div></div>');
   soproDiv.position((windowWidth/2) - ((((windowHeight*0.8)*0.21*4)+22.5)/2), windowHeight/2 - windowHeight*0.1);
+  sopro1=select('#sopro1');
 
   cordasDiv = createDiv('<div class = "instrument_galeria"><div class = "instrument_container" id = "cordas_container1" ><image src="images/'+cordas[0][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container2" ><image src="images/'+cordas[1][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container3" ><image src="images/'+cordas[2][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container4" ><image src="images/'+cordas[3][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container5" ><image src="images/'+cordas[4][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container6" ><image src="images/'+cordas[5][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container7" ><image src="images/'+cordas[6][0]+'.png"/></div><div class = "instrument_container" id = "cordas_container8" ><image src="images/'+cordas[7][0]+'.png"/></div></div>');
   cordasDiv.position((windowWidth/2) - ((((windowHeight*0.8)*0.21*4)+22.5)/2), windowHeight/2 - windowHeight*0.1);
@@ -103,13 +106,13 @@ function setup() {
 
   push();
   player1_drag = player1.notes();
-  player1_drag.touchMoved(function(){ dragDiv(player1_drag)}).touchEnded(dropDiv);
+ // player1_drag.touchMoved(function(){ dragDiv(player1_drag)}).touchEnded(dropDiv);
   player1_drag.position(windowWidth/2 - (((windowWidth*0.035*8)+46)/2),650);
   pop();
 
   push();
   player2_drag = player2.notes();
-  player2_drag.touchMoved(function(){ dragDiv(player2_drag)}).touchEnded(dropDiv);
+  //player2_drag.touchMoved(function(){ dragDiv(player2_drag)}).touchEnded(dropDiv);
   player2_drag.style('transform', 'rotate(90deg)');
   player2_drag.position(0,windowHeight/2 + 7.5);
   player2_drag.hide();
@@ -117,7 +120,7 @@ function setup() {
 
   push();
   player3_drag = player3.notes();
-  player3_drag.touchMoved(function(){ dragDiv(player3_drag)}).touchEnded(dropDiv);
+ // player3_drag.touchMoved(function(){ dragDiv(player3_drag)}).touchEnded(dropDiv);
   player3_drag.style('transform', 'rotate(-90deg)');
   player3_drag.position(870, windowHeight/2 - 62);
   player3_drag.hide();
@@ -313,6 +316,7 @@ function draw() {
   
   //line(windowWidth/2,0,windowWidth/2,windowHeight);
   //line(0,windowHeight/2,windowWidth,windowHeight/2);
+  playAnimation();
 }
 
 function dropDiv(){
@@ -497,8 +501,10 @@ function highlightSelected(InstrumentNum){
 function setInstrumentFamily(){
 
   //%%%%%%%%%%%%%%INSTRUMENT1%%%%%%%%%%%%%%
-  if(cenario_atual==sopro)
+  if(cenario_atual==sopro){
     Instrument1 = select('#sopro_container1');
+    setDirection(sopro1);
+  }
   else if(cenario_atual==percursao)
     Instrument1 = select('#percursao_container1');
   else
@@ -605,6 +611,22 @@ function setInstrumentFamily(){
     cenario_check[1] = true;
   else
     cenario_check[2] = true;
+}
+
+function setDirection(sopro1){
+  push();
+  rotate(angle);
+  if(direction == 0){
+    angle = angle + 0.05;
+    if(angle >= 20)
+      direction = 1;
+  }
+  else{
+    angle = angle - 0.05;
+    if(angle <= -30)
+      direction = 0;
+  }
+  pop();
 }
 
 /***********************************
