@@ -62,12 +62,10 @@ function setup() {
   left_arrow = select('#left');
   left_arrow.mousePressed(function(){ switchFamily(true)});
   left_arrow.touchStarted(function(){ switchFamily(true)});
-  left_arrow.touchEnded(function(){ switchFamily(true)});
 
   right_arrow = select('#right');
   right_arrow.mousePressed(function(){ switchFamily(false)});
   right_arrow.touchStarted(function(){ switchFamily(false)});
-  right_arrow.touchEnded(function(){ switchFamily(false)});
 
   conjuntoButton = createButton('Tocar em Conjunto');
   conjuntoButton.position(windowWidth*0.5 - windowWidth*0.1, windowHeight* 0.15);
@@ -569,35 +567,31 @@ function setInstrumentFamily(){
   if((cenario_atual==sopro && !cenario_check[0]) || (cenario_atual==percursao && !cenario_check[1]) || (cenario_atual==cordas && !cenario_check[2])){
     Instrument1.mousePressed(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
     Instrument1.touchStarted(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
-    Instrument1.touchEnded(function(){ change_instrument(Instrument1, cenario_atual[0][0], cenario_atual[0][1],0,0);});
+    Instrument1.touchEnded();
 
     Instrument2.mousePressed(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
     Instrument2.touchStarted(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
-    Instrument2.touchEnded(function(){ change_instrument(Instrument2, cenario_atual[1][0], cenario_atual[1][1],1,0);});
+    Instrument2.touchEnded();
 
     Instrument3.mousePressed(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
     Instrument3.touchStarted(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
-    Instrument3.touchEnded(function(){ change_instrument(Instrument3, cenario_atual[2][0], cenario_atual[2][1],2,0);});
+    Instrument3.touchEnded();
 
     Instrument4.mousePressed(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
     Instrument4.touchStarted(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
-    Instrument4.touchEnded(function(){ change_instrument(Instrument4, cenario_atual[3][0], cenario_atual[3][1],3,0);});
+    Instrument4.touchEnded();
 
     Instrument5.mousePressed(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
     Instrument5.touchStarted(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
-    Instrument5.touchEnded(function(){ change_instrument(Instrument5, cenario_atual[4][0], cenario_atual[4][1],0,1);});
 
     Instrument6.mousePressed(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
     Instrument6.touchStarted(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
-    Instrument6.touchEnded(function(){ change_instrument(Instrument6, cenario_atual[5][0], cenario_atual[5][1],1,1);});
 
     Instrument7.mousePressed(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
     Instrument7.touchStarted(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
-    Instrument7.touchEnded(function(){ change_instrument(Instrument7, cenario_atual[6][0], cenario_atual[6][1],2,1);});
 
     Instrument8.mousePressed(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
     Instrument8.touchStarted(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
-    Instrument8.touchEnded(function(){ change_instrument(Instrument8, cenario_atual[7][0], cenario_atual[7][1],3,1);});
   }
 
   if(cenario_atual == sopro)

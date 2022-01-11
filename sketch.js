@@ -37,7 +37,7 @@ function setup() {
   play_sound = loadSound('sounds/guitar');
 
   //Titulo
-  let title = createElement('h', 'NIME v2');
+  let title = createElement('h', 'NIME v3');
   title.addClass('title');
   title.position(windowWidth/2 - 190 ,windowHeight* 0.20);
   
