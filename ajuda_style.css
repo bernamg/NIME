@@ -158,7 +158,7 @@ p{
   margin-top: 50%;
 }
 
-#solo_user1, #solo_user2, #solo_user3{
+#solo_user1, #solo_user2, #solo_user3, #multi_user1, #multi_user2, #trocar1, #trocar2, #trocar3{
   display: block;
   max-width: 200px;
   margin: auto;

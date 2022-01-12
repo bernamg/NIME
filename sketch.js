@@ -228,7 +228,7 @@ function playAnimation(){
 function playMenu(){
   song1.stop();
   song2.stop();
-  play_sound.play();
+  //play_sound.play();
   window.location.href="game.html";
 }
 
